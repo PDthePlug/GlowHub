@@ -1,0 +1,101 @@
+/* Glow Hub premium storefront presentation — approved review direction */
+.sf-minimal-shell{display:flex;flex-direction:column;max-width:1320px;padding:1.75rem clamp(1rem,4vw,4rem) 7rem}
+.sf-minimal-shell>.sf-back{order:0;margin:0 0 1.4rem;font-size:.78rem;color:#635d5a}
+.sf-minimal-shell>.sf-minimal-gallery{order:1}
+.sf-minimal-shell>.sf-minimal-head{order:2}
+.sf-minimal-shell>.sf-anchor-nav{order:3}
+.sf-minimal-shell>.sf-minimal-columns{order:4}
+.sf-minimal-head{margin:2.4rem 0 1.3rem;align-items:center;border:0;padding:0}
+.sf-minimal-head>div{display:flex;min-width:0;flex-direction:column}
+.sf-minimal-head h1{order:0;margin:0;font-size:clamp(3.3rem,6vw,6rem);font-weight:820;line-height:.86;letter-spacing:-.075em}
+.sf-minimal-head .sf-meta-line{order:1;margin-top:1rem;gap:.85rem;font-size:.76rem}
+.sf-minimal-head>div>p{order:2;margin-top:.75rem;font-size:1.05rem;line-height:1.55;color:#6f6966}
+.sf-minimal-head>.sf-book-button{min-width:118px;border-radius:999px;padding:1rem 1.25rem;font-size:.8rem;box-shadow:0 12px 30px rgba(28,25,23,.12)}
+.sf-minimal-gallery{height:min(56vw,590px);border-radius:18px;gap:9px;background:#efedeb;box-shadow:0 1px 0 rgba(0,0,0,.03)}
+.sf-minimal-gallery img{transition:transform .35s ease;object-position:center}
+.sf-minimal-gallery img:hover{transform:scale(1.012)}
+.sf-minimal-gallery.count-2{grid-template-columns:1.55fr 1fr;grid-template-rows:1fr}
+.sf-minimal-gallery.count-3{grid-template-columns:1.62fr .88fr;grid-template-rows:1fr 1fr}
+.sf-minimal-gallery.count-3 img:first-child{grid-row:1/3}
+.sf-minimal-gallery.count-4{grid-template-columns:1.62fr .82fr .82fr;grid-template-rows:1fr 1fr}
+.sf-minimal-gallery.count-4 img:first-child{grid-row:1/3}
+.sf-minimal-gallery.count-4 img:nth-child(4){grid-column:2/4}
+.sf-minimal-gallery.count-5{grid-template-columns:1.65fr .82fr .82fr;grid-template-rows:1fr 1fr}
+.sf-minimal-gallery.count-5 img:first-child{grid-row:1/3}
+.sf-anchor-nav{top:64px;gap:2rem;background:rgba(255,255,255,.95);border-top:1px solid #eeeae7;border-bottom:1px solid #ddd9d6}
+.sf-anchor-nav a{padding:1.05rem 0;font-size:.78rem}
+.sf-minimal-columns{grid-template-columns:minmax(0,1fr) 365px;gap:5.5rem}
+.sf-minimal-columns>div{min-width:0}
+.sf-services-minimal{padding-top:5.2rem}
+.sf-services-minimal .sf-section-heading{margin-bottom:2.2rem}
+.sf-services-minimal .sf-section-heading h2{font-size:clamp(3rem,5vw,5rem);font-weight:850;line-height:.88}
+.sf-services-minimal .sf-service-collection{border-top:1px solid #d9d5d2}
+.sf-services-minimal .sf-service-collection article{padding:1.45rem 0;grid-template-columns:minmax(0,1fr) auto;gap:1.25rem}
+.sf-services-minimal .sf-service-info h3{font-size:1.15rem;font-weight:650;letter-spacing:-.02em}
+.sf-services-minimal .sf-service-info p{font-size:.83rem;line-height:1.6;color:#756f6c}
+.sf-services-minimal .sf-service-info>span{font-size:.73rem}
+.sf-services-minimal .sf-service-action b{font-size:.92rem}
+.sf-services-minimal .sf-service-action a{border-radius:999px;padding:.6rem .88rem;background:#fff}
+.sf-booking-aside{top:130px;padding-top:5.2rem}
+.sf-booking-card{border-radius:26px;padding:1.65rem;border-color:#e3dfdc;box-shadow:0 24px 65px rgba(34,27,30,.09)}
+.sf-booking-card h2{font-size:2rem;line-height:1.02}
+.sf-booking-card .sf-book-button{border-radius:999px;padding:.95rem 1rem}
+.sf-aside-wa{border-radius:999px;padding:.85rem}
+.sf-photos-minimal .sf-portfolio-grid{gap:12px;grid-auto-rows:260px}
+.sf-photos-minimal .sf-portfolio-grid figure{border-radius:18px;box-shadow:0 10px 28px rgba(25,20,22,.06)}
+.sf-reviews-minimal .sf-review-collection{gap:1rem}
+.sf-reviews-minimal .sf-review-collection article{border-radius:22px;padding:1.55rem;box-shadow:0 10px 30px rgba(30,24,27,.04)}
+.sf-reviews-minimal .sf-review-collection blockquote{font-size:1.5rem}
+.sf-about-minimal .sf-about-layout{gap:5rem}
+
+/* Warm & soft: more editorial cards and breathing room */
+.sf-soft-shell{max-width:1240px}
+.sf-soft-media{box-shadow:0 28px 70px rgba(72,52,45,.12)}
+.sf-services-soft .sf-service-collection article{padding:1.45rem;border-radius:26px;box-shadow:0 10px 30px rgba(70,48,43,.04)}
+.sf-photos-soft .sf-portfolio-grid figure{box-shadow:0 16px 38px rgba(70,48,43,.08)}
+.sf-reviews-soft .sf-review-collection article{padding:1.6rem;box-shadow:0 12px 32px rgba(70,48,43,.05)}
+
+/* Dark & bold: denser cinematic proof */
+.sf-editorial-strip{gap:6px;padding:6px;background:#0d0d0d}
+.sf-editorial-strip img{height:300px}
+.sf-editorial-shell{max-width:1300px}
+.sf-editorial-template .sf-service-collection article{padding:1.55rem 0}
+.sf-editorial-template .sf-portfolio-grid{gap:8px}
+.sf-editorial-template .sf-portfolio-grid figure{border-radius:4px}
+
+/* Service detail gallery inherits the premium venue rhythm */
+.service-gallery-page{max-width:1320px!important}
+.service-gallery-layout{gap:4.5rem!important}
+.service-gallery-visual{border-radius:24px!important;overflow:hidden;box-shadow:0 20px 55px rgba(30,24,27,.08)}
+.service-gallery-thumb{border-radius:18px!important;overflow:hidden}
+
+@media(max-width:900px){
+  .sf-minimal-shell{padding:1.25rem 1rem 6.5rem}
+  .sf-minimal-head{align-items:flex-start;margin:1.55rem 0 1rem}
+  .sf-minimal-head h1{font-size:3.45rem}
+  .sf-minimal-head>.sf-book-button{display:none}
+  .sf-minimal-gallery{height:58vw;min-height:330px;border-radius:16px;gap:6px}
+  .sf-minimal-columns{grid-template-columns:1fr;gap:0}
+  .sf-booking-aside{display:none}
+  .sf-services-minimal{padding-top:3.75rem}
+  .sf-photos-minimal .sf-portfolio-grid{grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-rows:210px}
+}
+@media(max-width:640px){
+  .sf-minimal-shell>.sf-back{margin-bottom:1rem}
+  .sf-minimal-gallery{height:78vw;min-height:285px;border-radius:14px;gap:5px}
+  .sf-minimal-gallery.count-3{grid-template-columns:1.45fr .8fr;grid-template-rows:1fr 1fr}
+  .sf-minimal-gallery.count-4,.sf-minimal-gallery.count-5{grid-template-columns:1.45fr .8fr;grid-template-rows:1fr 1fr}
+  .sf-minimal-gallery.count-4 img:first-child,.sf-minimal-gallery.count-5 img:first-child{grid-row:1/3}
+  .sf-minimal-gallery.count-4 img:nth-child(n+4),.sf-minimal-gallery.count-5 img:nth-child(n+4){display:none}
+  .sf-minimal-head{margin-top:1.35rem}
+  .sf-minimal-head h1{font-size:3.15rem}
+  .sf-minimal-head .sf-meta-line{font-size:.7rem;gap:.55rem}
+  .sf-minimal-head>div>p{font-size:.95rem}
+  .sf-anchor-nav{gap:1.4rem;overflow-x:auto}
+  .sf-anchor-nav a{flex-shrink:0}
+  .sf-section-heading h2,.sf-services-minimal .sf-section-heading h2{font-size:2.75rem}
+  .sf-services-minimal .sf-service-collection article{padding:1.2rem 0}
+  .sf-photos-minimal .sf-portfolio-grid{grid-auto-rows:180px;gap:8px}
+  .sf-review-collection{grid-template-columns:1fr}
+  .sf-about-layout{grid-template-columns:1fr;gap:2.5rem}
+}
