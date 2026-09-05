@@ -1,8 +1,8 @@
-name: Verify Glow Hub migration
+name: Verify Glow Hub production
 
 on:
   push:
-    branches: [feature/discover-on-glowhub]
+    branches: [main, feature/discover-on-glowhub]
   workflow_dispatch:
 
 permissions:
@@ -24,6 +24,16 @@ jobs:
 
       - name: Install dependencies
         run: npm install --no-audit --no-fund
+
+      - name: Guard production auth redirect
+        shell: bash
+        run: |
+          set -euo pipefail
+          grep -q "PRODUCTION_APP_URL='https://glowhub-three.vercel.app'" src/platform-client.ts
+          if grep -q 'localhost' src/platform-client.ts; then
+            echo 'Production auth client must not contain a localhost redirect'
+            exit 1
+          fi
 
       - name: Build production frontend
         run: npm run build
