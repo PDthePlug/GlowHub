@@ -1,0 +1,69 @@
+/* Glow Hub Discover — premium venue marketplace presentation */
+.discover-page{background:#fcfbfa}
+.discover-header{height:82px;border-bottom-color:#e7e2de;background:rgba(255,255,255,.92);box-shadow:0 1px 0 rgba(23,20,23,.02)}
+.discover-brand{font-size:1.12rem}
+.discover-business-btn{padding:.78rem 1.05rem;background:#fff;box-shadow:0 6px 18px rgba(28,22,25,.05)}
+.discover-hero{background:radial-gradient(circle at 80% 6%,rgba(196,176,255,.38),transparent 31%),radial-gradient(circle at 17% 20%,rgba(255,200,174,.38),transparent 28%),linear-gradient(180deg,#fff9f5 0,#fff 84%)}
+.discover-hero-inner{max-width:1380px;padding-top:clamp(5rem,8vw,8.5rem);padding-bottom:4.2rem}
+.discover-hero h1{max-width:1040px;font-size:clamp(4.6rem,9vw,9.2rem);line-height:.82}
+.discover-lead{max-width:760px;font-size:1.05rem}
+.discover-search{max-width:1180px;margin-top:2.8rem;padding:.6rem;border-radius:24px;border-color:#ddd7d2;box-shadow:0 24px 65px rgba(42,32,37,.11)}
+.discover-search label{min-height:62px;padding:.65rem 1.15rem}
+.discover-search button{border-radius:18px;padding:0 1.55rem;box-shadow:0 8px 18px rgba(25,22,23,.14)}
+.discover-categories{gap:.65rem;margin-top:1.35rem}
+.discover-categories button{padding:.68rem 1rem;background:#fff;box-shadow:0 3px 12px rgba(30,24,27,.025)}
+.discover-results{max-width:1380px;padding-top:5.5rem}
+.discover-section-head{align-items:end}
+.discover-section-head h2{font-size:clamp(3.2rem,5.2vw,5.5rem)}
+.discover-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:1.6rem;margin-top:3rem}
+.discover-card{border-color:#e2dedb;border-radius:30px;box-shadow:0 16px 48px rgba(39,30,35,.065);background:#fff}
+.discover-card:hover{transform:translateY(-4px);box-shadow:0 28px 70px rgba(39,30,35,.11)}
+.discover-card-media{aspect-ratio:1.68/1;background:#eeeae7}
+.discover-card-media img{transform:scale(1.001)}
+.discover-card:hover .discover-card-media img{transform:scale(1.025)}
+.discover-card-body{padding:1.4rem 1.45rem 1.5rem}
+.discover-card-title{align-items:center}
+.discover-card-title h3{font-family:Georgia,'Times New Roman',serif;font-size:1.65rem;font-weight:400;letter-spacing:-.035em}
+.discover-card-title>span{border:1px solid #e5e0dd;border-radius:999px;background:#faf9f8;padding:.45rem .62rem;font-size:.7rem}
+.discover-card-title .new{color:#6d6568;background:#f6f3f1}
+.discover-location{margin-top:.55rem;font-size:.78rem}
+.discover-tagline{min-height:auto;margin-top:1rem;font-family:Georgia,'Times New Roman',serif;font-size:1.08rem;line-height:1.45;color:#514b4d}
+.discover-service-list{margin-top:1.15rem;border-top-color:#ebe7e4}
+.discover-service-list>div{padding:.9rem 0;font-size:.82rem}
+.discover-service-list small{margin-top:.2rem;font-size:.7rem}
+.discover-service-list b{font-size:.83rem}
+.discover-card-foot{margin-top:1.15rem;padding-top:.1rem}
+.discover-card-foot>span{font-size:.72rem;color:#8b8386}
+.discover-card-foot a{padding:.72rem 1rem;font-size:.74rem;box-shadow:0 8px 18px rgba(25,22,23,.12)}
+.discover-how{max-width:1380px}
+.discover-how-grid{gap:1.5rem}
+.discover-how-grid article{padding-top:1.6rem}
+.discover-how-grid h3{font-size:2.2rem}
+.discover-owner-card{border-radius:40px;box-shadow:0 28px 75px rgba(26,21,23,.14)}
+.discover-owner-mini{border-radius:30px}
+
+@media(min-width:1440px){
+  .discover-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+}
+@media(max-width:950px){
+  .discover-grid{grid-template-columns:1fr 1fr;gap:1rem}
+  .discover-card-title h3{font-size:1.35rem}
+}
+@media(max-width:640px){
+  .discover-page{background:#fff}
+  .discover-header{height:68px}
+  .discover-hero-inner{padding-top:4rem;padding-bottom:3.2rem}
+  .discover-hero h1{font-size:4.1rem;line-height:.84}
+  .discover-search{border-radius:24px;padding:.45rem;box-shadow:0 18px 45px rgba(42,32,37,.09)}
+  .discover-search label{min-height:58px;padding:.7rem .85rem}
+  .discover-search button{border-radius:18px}
+  .discover-results{padding-top:4.4rem}
+  .discover-grid{grid-template-columns:1fr;gap:1.25rem}
+  .discover-card{border-radius:26px;box-shadow:0 14px 38px rgba(39,30,35,.075)}
+  .discover-card-media{aspect-ratio:1.48/1}
+  .discover-card-body{padding:1.25rem}
+  .discover-card-title h3{font-size:1.65rem}
+  .discover-tagline{font-size:1rem}
+  .discover-service-list>div{padding:.85rem 0}
+  .discover-section-head h2{font-size:3.35rem}
+}

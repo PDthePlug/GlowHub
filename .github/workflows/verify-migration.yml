@@ -2,7 +2,7 @@ name: Verify Glow Hub production
 
 on:
   push:
-    branches: [main, feature/discover-on-glowhub, feature/service-media-gallery]
+    branches: [main, feature/discover-on-glowhub, feature/service-media-gallery, feature/premium-marketplace-service-crud]
   workflow_dispatch:
 
 permissions:
@@ -44,6 +44,18 @@ jobs:
           grep -q "media.matches?5:3" src/ServiceGalleryPage.tsx
           grep -q "View all work" src/ServiceGalleryPage.tsx
           grep -q "ServiceGalleryPage" src/main.tsx
+
+      - name: Verify premium marketplace and service CRUD contract
+        shell: bash
+        run: |
+          set -euo pipefail
+          grep -q 'sf-minimal-gallery.count-3' src/premium-v2.css
+          grep -q 'grid-template-columns:repeat(2' src/discover-v2.css
+          grep -q 'PUT /api/services/:id' backend/service-management.ts
+          grep -q 'DELETE /api/services/:id' backend/service-management.ts
+          grep -q 'Edit service' src/ServicesManager.tsx
+          grep -q 'Delete' src/ServicesManager.tsx
+          grep -q "ServicesSimple.*ServicesManager" src/BusinessSimple.tsx
 
       - name: Build production frontend
         run: npm run build
