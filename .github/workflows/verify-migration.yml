@@ -2,7 +2,7 @@ name: Verify Glow Hub production
 
 on:
   push:
-    branches: [main, feature/discover-on-glowhub]
+    branches: [main, feature/discover-on-glowhub, feature/service-media-gallery]
   workflow_dispatch:
 
 permissions:
@@ -34,6 +34,16 @@ jobs:
             echo 'Production auth client must not contain a localhost redirect'
             exit 1
           fi
+
+      - name: Verify service media gallery contract
+        shell: bash
+        run: |
+          set -euo pipefail
+          grep -q "multiple" src/StorefrontStudio.tsx
+          grep -q "slice(0,8)" src/StorefrontStudio.tsx
+          grep -q "media.matches?5:3" src/ServiceGalleryPage.tsx
+          grep -q "View all work" src/ServiceGalleryPage.tsx
+          grep -q "ServiceGalleryPage" src/main.tsx
 
       - name: Build production frontend
         run: npm run build
