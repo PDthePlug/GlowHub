@@ -3,6 +3,7 @@ import { api } from '@appdeploy/client';
 import { ArrowRight,Clock3,MapPin,Menu,MessageCircle,Star,X } from 'lucide-react';
 import PremiumStorefrontHome from './PremiumStorefront';
 import './public-profile.css';
+import './theme-continuity.css';
 
 type Theme='editorial'|'soft-luxe'|'minimal';type DayKey='mon'|'tue'|'wed'|'thu'|'fri'|'sat'|'sun';
 type Service={id:string;name:string;price:number;duration:number;description:string};
