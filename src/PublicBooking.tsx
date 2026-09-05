@@ -8,7 +8,7 @@ type BookingPolicy={depositRequired:boolean;depositType:'fixed'|'percentage';dep
 type Storefront={name:string;slug:string;location:string;services:Service[];bookingPolicy?:BookingPolicy};
 type FormState={customerName:string;customerPhone:string;serviceId:string;date:string;time:string;notes:string;attributionCampaignId:string};
 function money(value:number){return new Intl.NumberFormat('en-ZA',{style:'currency',currency:'ZAR',maximumFractionDigits:0}).format(value||0)}
-function todayIso(){return new Date().toISOString().slice(0,10)}
+function todayIso(){return new Intl.DateTimeFormat('en-CA',{timeZone:'Africa/Johannesburg',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date())}
 function messageOf(error:unknown){const e=error as{response?:{data?:{error?:string}};message?:string};return e.response?.data?.error||e.message||'Something went wrong. Try again.'}
 function depositLabel(policy:BookingPolicy){return policy.depositType==='percentage'?`${policy.depositValue}%`:money(policy.depositValue)}
 
