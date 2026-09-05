@@ -15,20 +15,20 @@ Steps:
 
 Expected: Discovery Studio appears with its real service and price, and opening it shows its customer storefront rather than the private business app.
 
-## Test 2 - Website look changes the real storefront architecture
+## Test 2 - Website design changes the real storefront architecture
 Viewport: desktop
-Covers: storefront customization persistence, Clean white template, Warm & soft template, Dark & bold template, accent inheritance, public storefront rendering
+Covers: storefront customization persistence, live phone preview, Clean white template, Warm & soft template, Dark & bold template, accent inheritance, public storefront rendering
 Description: Verifies Customize My Website selects genuinely different website compositions rather than recolouring one shared page.
 
 Setup:
 1. Sign in as an owner with a business that has a cover photo, at least three portfolio images, one service and one published review
 
 Steps:
-1. Open My Business → Website, choose Clean white, save, and open the public storefront
-2. Return to Website, choose Warm & soft, save, and reopen the public storefront
-3. Return to Website, choose Dark & bold, save, and reopen the public storefront
+1. Open My Business → Website, switch among Clean white, Warm & soft and Dark & bold, and confirm the phone preview changes composition for each design
+2. Choose Clean white, save, and open the public storefront; then repeat for Warm & soft
+3. Choose Dark & bold, save, and reopen the public storefront
 
-Expected: Clean white uses a restrained profile header and clean collage, Warm & soft uses a split editorial hero with rounded imagery/card treatment, and Dark & bold uses a cinematic high-contrast hero, heavy type and harder gallery/service treatment. The same booking/service data remains intact in all three.
+Expected: Clean white uses a restrained profile header and clean collage, Warm & soft uses a split editorial hero with rounded imagery/card treatment, and Dark & bold uses a cinematic high-contrast hero, heavy type and harder gallery/service treatment. The same services, portfolio evidence and booking data remain intact in all three.
 
 ## Test 3 - Profile storefront leads directly from a service to real booking
 Viewport: mobile
@@ -70,4 +70,4 @@ Steps:
 2. Move through Today, Bookings, Clients, Growth and My Business, then open Website
 3. Open Settings and review Facebook, Instagram and WhatsApp Business connection cards
 
-Expected: The owner enters the private app normally, Website still offers the three storefront designs, daily navigation remains usable, and Meta cards never expose access tokens, App Secrets or manual Page IDs.
+Expected: The owner enters the private app normally, Website offers the three full website designs, daily navigation remains usable, and Meta cards never expose access tokens, App Secrets or manual Page IDs.
