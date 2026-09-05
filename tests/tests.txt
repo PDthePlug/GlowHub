@@ -21,29 +21,30 @@ Covers: storefront customization persistence, live phone preview, Clean white te
 Description: Verifies Customize My Website selects genuinely different website compositions rather than recolouring one shared page.
 
 Setup:
-1. Sign in as an owner with a business that has a cover photo, at least three portfolio images, one service and one published review
+1. Sign in as an owner with a business that has hero photos, at least three portfolio images, one service and one published review
 
 Steps:
 1. Open My Business → Website, switch among Clean white, Warm & soft and Dark & bold, and confirm the phone preview changes composition for each design
 2. Choose Clean white, save, and open the public storefront; then repeat for Warm & soft
 3. Choose Dark & bold, save, and reopen the public storefront
 
-Expected: Clean white uses a restrained profile header and clean collage, Warm & soft uses a split editorial hero with rounded imagery/card treatment, and Dark & bold uses a cinematic high-contrast hero, heavy type and harder gallery/service treatment. The same services, portfolio evidence and booking data remain intact in all three.
+Expected: Clean white uses a restrained profile header and a maximum three-photo collage, Warm & soft uses a split editorial hero with rounded imagery/card treatment, and Dark & bold uses a cinematic high-contrast hero, heavy type and harder gallery/service treatment. The same services, portfolio evidence and booking data remain intact in all three.
 
 ## Test 3 - Storefront leads from a service to a real available booking
 Viewport: mobile
-Covers: responsive storefront template, service preset, sticky booking action, working-hours availability, occupied-slot protection, booking request
+Covers: responsive storefront template, service preset, premium booking journey, working-hours availability, occupied-slot protection, booking request
 Description: Verifies each public website keeps the customer task clear and uses the hardened availability rules.
 
 Setup:
 1. Sign in as an owner, keep one active service and one future working day open, then publish the storefront
 
 Steps:
-1. Open the public storefront on mobile and tap Book for the active service
-2. Choose the open date and one displayed available time
-3. Submit a valid customer name and phone number
+1. Open the public storefront on mobile and tap the service card, review Photos & details, then tap Book this service
+2. Confirm the service, price and duration remain visible on the booking page
+3. Choose the open date and one displayed available time
+4. Enter a valid customer name and phone number and send the booking request
 
-Expected: The chosen service carries into booking, the page stays inside the mobile viewport, only valid available times are offered, and the booking request is recorded successfully.
+Expected: The chosen service carries into booking, the page stays inside the mobile viewport, only valid available times are offered, and the success screen says the request was sent to the business for confirmation.
 
 ## Test 4 - Discovery and storefronts never invent marketplace evidence
 Viewport: desktop
@@ -55,10 +56,10 @@ Setup:
 
 Steps:
 1. Search for a phrase/location that has no matching published business and inspect the empty state
-2. Open the business with real evidence and inspect Photos, Reviews and About
+2. Open the business with real evidence and inspect Portfolio, Reviews and About
 3. Open the business without reviews and inspect its summary
 
-Expected: No-match search shows an empty state rather than fabricated listings; uploaded work/reviews/hours appear where supplied; the business without reviews is shown as new or without a rating rather than receiving an invented score.
+Expected: No-match search shows a simple empty state rather than fabricated listings; uploaded work/reviews/hours appear where supplied; the business without reviews is shown as new or without a rating rather than receiving an invented score.
 
 ## Test 5 - Customer discovery stays separate from the owner operating app
 Viewport: mobile
@@ -71,3 +72,19 @@ Steps:
 3. Open Settings and review Facebook, Instagram and WhatsApp Business connection cards
 
 Expected: The owner enters the private app normally, Website offers the three full website designs, daily navigation remains usable, and Meta cards never expose access tokens, App Secrets or manual Page IDs.
+
+## Test 6 - Full customer journey uses customer language and a consistent waitlist
+Viewport: mobile
+Covers: Discover language, storefront navigation, service gallery, booking, no-slot waitlist, confirmation, route-level loading
+Description: Verifies public pages help the customer decide and act without exposing Glow Hub implementation language.
+
+Setup:
+1. Publish a business with portfolio work, one service, and a future date with no remaining availability
+
+Steps:
+1. Start on Discover and open the business, then Services → service Photos & details
+2. Open booking, choose the fully booked date, and follow Join the waitlist
+3. Submit the waitlist form and return to the business
+4. Repeat booking on a date with availability and submit a booking request
+
+Expected: The journey stays visually consistent from Discover through waitlist/booking, no page talks about a "published storefront", "saved availability", provider setup or internal platform mechanics, and both waitlist and booking confirmations tell the customer what happens next in plain language.

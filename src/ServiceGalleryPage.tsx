@@ -1,5 +1,5 @@
 import { useEffect,useMemo,useState } from 'react';
-import { ArrowLeft,ArrowRight,Clock3,Images,MapPin,MessageCircle,X } from 'lucide-react';
+import { ArrowLeft,ArrowRight,Clock3,Images,MessageCircle,X } from 'lucide-react';
 import { api } from '@appdeploy/client';
 import './service-gallery.css';
 
@@ -28,7 +28,7 @@ export default function ServiceGalleryPage({slug,serviceId}:{slug:string;service
   useEffect(()=>{if(!lightbox)return;const previous=document.body.style.overflow;document.body.style.overflow='hidden';return()=>{document.body.style.overflow=previous}},[lightbox]);
 
   if(loading)return <main className='svc-state'><div className='svc-spinner'/><p>Opening service…</p></main>;
-  if(failed||!storefront||!service)return <main className='svc-state'><h1>Service unavailable</h1><p>This service is not available right now.</p><a href={`#/${slug}/services`}>Back to services</a></main>;
+  if(failed||!storefront||!service)return <main className='svc-state'><h1>This service isn’t available.</h1><p>Choose another service from the business.</p><a href={`#/${slug}/services`}>Back to services</a></main>;
   const theme=storefront.brand?.theme||'editorial',accent=ACCENTS[storefront.brand?.accent||'rose']||ACCENTS.rose;
   return <main className={`svc-page theme-${theme}`} style={{'--svc-accent':accent} as React.CSSProperties}>
     <header className='svc-topbar'>
@@ -41,19 +41,18 @@ export default function ServiceGalleryPage({slug,serviceId}:{slug:string;service
         <div className='svc-copy'>
           <p className='svc-kicker'>{storefront.location}</p>
           <h1>{service.name}</h1>
-          <p className='svc-description'>{service.description||`Book ${service.name} with ${storefront.name}.`}</p>
+          <p className='svc-description'>{service.description||`${service.name} at ${storefront.name}.`}</p>
           <div className='svc-meta'><span><Clock3 size={15}/>{service.duration} min</span><span className='svc-price'>{money(service.price)}</span></div>
-          <div className='svc-actions'><a href={`#/${storefront.slug}/book?service=${service.id}`} className='svc-primary'>Book this service <ArrowRight size={16}/></a><a href={wa(storefront.whatsapp,`Hi ${storefront.ownerName}, I found ${service.name} on Glow Hub and would like to ask about it.`)} target='_blank' rel='noreferrer' className='svc-secondary'><MessageCircle size={16}/>Ask on WhatsApp</a></div>
+          <div className='svc-actions'><a href={`#/${storefront.slug}/book?service=${service.id}`} className='svc-primary'>Book this service <ArrowRight size={16}/></a><a href={wa(storefront.whatsapp,`Hi ${storefront.ownerName}, I’d like to ask about ${service.name}.`)} target='_blank' rel='noreferrer' className='svc-secondary'><MessageCircle size={16}/>Ask on WhatsApp</a></div>
         </div>
         <div className='svc-proof'>
-          <div className='svc-proof-head'><div><p>Real work</p><h2>{images.length?`${images.length} photo${images.length===1?'':'s'} of this service`:'Photos from this service will appear here.'}</h2></div>{images.length>0&&<span><Images size={14}/>{images.length}</span>}</div>
-          {images.length?<div className={`svc-gallery-preview count-${visible.length}`}>{visible.map((image,index)=><button type='button' onClick={()=>setLightbox(true)} key={`${image.url}-${index}`} className={`svc-shot shot-${index+1}`}><img src={image.url} alt={`${service.name} — ${image.title}`} loading={index===0?'eager':'lazy'}/>{image.label!=='Work photo'&&<span>{image.label}</span>}{index===visible.length-1&&hidden>0&&<b className='svc-more'>+{hidden}<small>View all</small></b>}</button>)}</div>:<div className='svc-empty-photo'><Images size={30}/><p>{storefront.name} has not added photos for this service yet.</p></div>}
-          {images.length>visible.length&&<button type='button' className='svc-view-all' onClick={()=>setLightbox(true)}>View all work <span>{images.length}</span></button>}
+          <div className='svc-proof-head'><div><p>Portfolio</p><h2>{images.length?`${images.length} photo${images.length===1?'':'s'} of ${service.name}`:'No photos yet'}</h2></div>{images.length>0&&<span><Images size={14}/>{images.length}</span>}</div>
+          {images.length?<div className={`svc-gallery-preview count-${visible.length}`}>{visible.map((image,index)=><button type='button' onClick={()=>setLightbox(true)} key={`${image.url}-${index}`} className={`svc-shot shot-${index+1}`}><img src={image.url} alt={`${service.name} — ${image.title}`} loading={index===0?'eager':'lazy'}/>{image.label!=='Work photo'&&<span>{image.label}</span>}{index===visible.length-1&&hidden>0&&<b className='svc-more'>+{hidden}<small>View all</small></b>}</button>)}</div>:<div className='svc-empty-photo'><Images size={30}/><p>There are no portfolio photos for this service yet.</p></div>}
+          {images.length>visible.length&&<button type='button' className='svc-view-all' onClick={()=>setLightbox(true)}>View all photos <span>{images.length}</span></button>}
         </div>
       </section>
-      {images.length>0&&<section className='svc-work-note'><MapPin size={16}/><p>These photos are attached by {storefront.name} to <b>{service.name}</b>, so customers can judge the service from more than one angle before booking.</p></section>}
     </div>
     <div className='svc-mobile-bar'><div><b>{money(service.price)}</b><span>{service.duration} min</span></div><a href={`#/${storefront.slug}/book?service=${service.id}`}>Book now</a></div>
-    {lightbox&&<div className='svc-lightbox' role='dialog' aria-modal='true' aria-label={`${service.name} work gallery`}><div className='svc-lightbox-head'><div><p>{storefront.name}</p><h2>{service.name} · work gallery</h2></div><button type='button' aria-label='Close gallery' onClick={()=>setLightbox(false)}><X size={22}/></button></div><div className='svc-lightbox-grid'>{images.map((image,index)=><figure key={`${image.url}-all-${index}`}><img src={image.url} alt={`${service.name} work ${index+1}`} loading='lazy'/><figcaption><b>{image.title}</b>{image.label!=='Work photo'&&<span>{image.label}</span>}</figcaption></figure>)}</div></div>}
+    {lightbox&&<div className='svc-lightbox' role='dialog' aria-modal='true' aria-label={`${service.name} portfolio`}><div className='svc-lightbox-head'><div><p>{storefront.name}</p><h2>{service.name}</h2></div><button type='button' aria-label='Close gallery' onClick={()=>setLightbox(false)}><X size={22}/></button></div><div className='svc-lightbox-grid'>{images.map((image,index)=><figure key={`${image.url}-all-${index}`}><img src={image.url} alt={`${service.name} photo ${index+1}`} loading='lazy'/><figcaption><b>{image.title}</b>{image.label!=='Work photo'&&<span>{image.label}</span>}</figcaption></figure>)}</div></div>}
   </main>
 }
