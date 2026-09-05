@@ -1,6 +1,7 @@
 import { ArrowRight,Clock3,MapPin,MessageCircle,Scissors,Star } from 'lucide-react';
 import './premium-storefront.css';
 import './storefront-moods.css';
+import './premium-v3.css';
 
 type Theme='editorial'|'soft-luxe'|'minimal';type DayKey='mon'|'tue'|'wed'|'thu'|'fri'|'sat'|'sun';type DayHours={enabled:boolean;open:string;close:string};type Service={id:string;name:string;price:number;duration:number;description:string};type Portfolio={id:string;kind?:'completed'|'before_after';title:string;description:string;serviceId:string;serviceName:string;imageUrl?:string;beforeImageUrl?:string;afterImageUrl?:string};type Review={id:string;customerName:string;quote:string;rating:number;source:string};type Storefront={category?:string;name:string;ownerName:string;slug:string;whatsapp:string;location:string;tagline:string;about:string;services:Service[];portfolio:Portfolio[];reviews?:Review[];brand?:{theme?:Theme;accent?:string;heroImageUrl?:string;heroImageUrls?:string[];logoImageUrl?:string};businessHours?:{timezone:string;days:Record<DayKey,DayHours>}};
 const DAYS:Array<[DayKey,string]>=[['mon','Monday'],['tue','Tuesday'],['wed','Wednesday'],['thu','Thursday'],['fri','Friday'],['sat','Saturday'],['sun','Sunday']];
