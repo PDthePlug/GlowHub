@@ -27,10 +27,10 @@ function Root(){
   let content;
   if(isDiscoverHome(hash))content=<DiscoverHome/>;
   else if(isBusinessAuth(hash))content=<BusinessAuth/>;
-  else if(service)content=<ServiceGalleryPage slug={service.slug} serviceId={service.serviceId}/>;
-  else if(booking)content=<PublicBooking slug={booking.slug}/>;
-  else if(waitlist)content=<PublicWaitlist slug={waitlist.slug}/>;
-  else if(profile)content=<PublicProfile slug={profile.slug} page={profile.page}/>;
+  else if(service)content=<ServiceGalleryPage key={hash} slug={service.slug} serviceId={service.serviceId}/>;
+  else if(booking)content=<PublicBooking key={hash} slug={booking.slug}/>;
+  else if(waitlist)content=<PublicWaitlist key={hash} slug={waitlist.slug}/>;
+  else if(profile)content=<PublicProfile key={hash} slug={profile.slug} page={profile.page}/>;
   else content=<App/>;
   return <Suspense fallback={<RouteLoader/>}>{content}</Suspense>;
 }
