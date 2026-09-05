@@ -30,10 +30,10 @@ Steps:
 
 Expected: Clean white uses a restrained profile header and clean collage, Warm & soft uses a split editorial hero with rounded imagery/card treatment, and Dark & bold uses a cinematic high-contrast hero, heavy type and harder gallery/service treatment. The same services, portfolio evidence and booking data remain intact in all three.
 
-## Test 3 - Profile storefront leads directly from a service to real booking
+## Test 3 - Storefront leads from a service to a real available booking
 Viewport: mobile
 Covers: responsive storefront template, service preset, sticky booking action, working-hours availability, occupied-slot protection, booking request
-Description: Verifies each public website keeps the customer task clear and uses the hardened booking engine.
+Description: Verifies each public website keeps the customer task clear and uses the hardened availability rules.
 
 Setup:
 1. Sign in as an owner, keep one active service and one future working day open, then publish the storefront
