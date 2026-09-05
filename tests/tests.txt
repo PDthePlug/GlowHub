@@ -1,64 +1,73 @@
 # Tests
 
-## Test 1 - Owner chooses a storefront look and it persists [sanity]
+## Test 1 - Discover a published business and open its profile [sanity]
 Viewport: desktop
-Covers: PUT /api/storefront-settings/:businessId, storefront style persistence, public theme rendering, live preview
-Description: Verifies an owner can change the website feel with a few safe choices and the same choice reaches the real customer storefront.
-
-Steps:
-1. Sign in as an owner and open My Business → Website
-2. Choose Clean white and a different Main colour while watching the phone preview update
-3. Save the website look, refresh the owner page, then open the public business website
-
-Expected: Clean white and the selected accent remain selected after refresh, the public storefront uses the same bright white look, and the first screen is rendered in the clean minimal treatment rather than the dark photo-first treatment.
-
-## Test 2 - New business receives a useful category-aware starting point
-Viewport: desktop
-Covers: storefront-settings creation, category-aware defaults, backwards-compatible theme storage
-Description: Verifies Glow Hub chooses a sensible starting look without asking a new owner to design a website from scratch.
+Covers: Discover landing, public discovery search, published storefront projection, service/location/date filtering, storefront navigation
+Description: Verifies Glow Hub behaves as a customer discovery destination and only surfaces a real published business.
 
 Setup:
-1. Create a new barber business with one real bookable service
+1. Sign in as a business owner and create a business named "Discovery Studio" in Johannesburg with a service named "Silk Press" priced at R450, leave online booking enabled, and keep the selected search date open in Working hours
 
 Steps:
-1. Open My Business → Website for the new barber
-2. Review the three Website look choices and Main colour choices
-3. Open the public storefront without changing the defaults
+1. Sign out or return to the Glow Hub home page
+2. Search for "Silk Press" in Johannesburg on the open date
+3. Open the Discovery Studio result
 
-Expected: Dark & bold is presented as the recommended starting look for the barbershop, Ink is the stored starting accent, and the public storefront renders normally without exposing Editorial, Soft Luxe or Minimal terminology.
+Expected: Discovery Studio appears with its real service and price, and opening it shows its customer storefront rather than the private business app.
 
-## Test 3 - Storefront setup stays simple on mobile
+## Test 2 - Website design changes the real storefront architecture
+Viewport: desktop
+Covers: storefront customization persistence, live phone preview, Clean white template, Warm & soft template, Dark & bold template, accent inheritance, public storefront rendering
+Description: Verifies Customize My Website selects genuinely different website compositions rather than recolouring one shared page.
+
+Setup:
+1. Sign in as an owner with a business that has a cover photo, at least three portfolio images, one service and one published review
+
+Steps:
+1. Open My Business → Website, switch among Clean white, Warm & soft and Dark & bold, and confirm the phone preview changes composition for each design
+2. Choose Clean white, save, and open the public storefront; then repeat for Warm & soft
+3. Choose Dark & bold, save, and reopen the public storefront
+
+Expected: Clean white uses a restrained profile header and clean collage, Warm & soft uses a split editorial hero with rounded imagery/card treatment, and Dark & bold uses a cinematic high-contrast hero, heavy type and harder gallery/service treatment. The same services, portfolio evidence and booking data remain intact in all three.
+
+## Test 3 - Storefront leads from a service to a real available booking
 Viewport: mobile
-Covers: responsive storefront editor, non-page-builder customization, live phone preview, portfolio and review setup
-Description: Verifies the storefront editor stays usable on a phone and keeps advanced web-design decisions out of the owner's path.
+Covers: responsive storefront template, service preset, sticky booking action, working-hours availability, occupied-slot protection, booking request
+Description: Verifies each public website keeps the customer task clear and uses the hardened availability rules.
+
+Setup:
+1. Sign in as an owner, keep one active service and one future working day open, then publish the storefront
 
 Steps:
-1. Open My Business → Website on mobile
-2. Switch between Warm & soft and Clean white, then change the Main colour
-3. Scroll through Logo & cover photo, Your work, Reviews and More website settings
+1. Open the public storefront on mobile and tap Book for the active service
+2. Choose the open date and one displayed available time
+3. Submit a valid customer name and phone number
 
-Expected: The page remains inside the mobile viewport, the phone preview updates without horizontal scrolling, and there are no controls for fonts, card radius, section ordering, navigation style, CSS or other page-builder settings.
+Expected: The chosen service carries into booking, the page stays inside the mobile viewport, only valid available times are offered, and the booking request is recorded successfully.
 
-## Test 4 - Booking and Growth still use the hardened business schedule
+## Test 4 - Discovery and storefronts never invent marketplace evidence
+Viewport: desktop
+Covers: discovery empty state, real review/photo rendering, opening hours, no fake ratings or popularity, WhatsApp fallback
+Description: Verifies Glow Hub only displays customer evidence that a business actually supplied.
+
+Setup:
+1. Publish one business with a real portfolio photo and review, and leave another published business without reviews
+
+Steps:
+1. Search for a phrase/location that has no matching published business and inspect the empty state
+2. Open the business with real evidence and inspect Photos, Reviews and About
+3. Open the business without reviews and inspect its summary
+
+Expected: No-match search shows an empty state rather than fabricated listings; uploaded work/reviews/hours appear where supplied; the business without reviews is shown as new or without a rating rather than receiving an invented score.
+
+## Test 5 - Customer discovery stays separate from the owner operating app
 Viewport: mobile
-Covers: public booking regression, business-hours enforcement, Growth availability regression, storefront route compatibility
-Description: Verifies storefront styling does not change booking or Growth's shared availability rules.
+Covers: business sign-in boundary, Today/Bookings/Clients/Growth/My Business regression, storefront editor access, Meta connection security
+Description: Verifies the marketplace direction does not weaken the private owner product or secure social-publishing boundary.
 
 Steps:
-1. Configure working hours with one future open day and one closed day
-2. Open the styled public storefront and booking page, then inspect both dates
-3. Return to Growth and refresh the current opportunity
+1. From Discover, choose Business sign in and authenticate as an existing owner
+2. Move through Today, Bookings, Clients, Growth and My Business, then open Website
+3. Open Settings and review Facebook, Instagram and WhatsApp Business connection cards
 
-Expected: The closed day has no public booking slots, the open day only offers in-hours slots, and Growth's open-capacity signal still reflects the same saved schedule regardless of storefront look.
-
-## Test 5 - Social connections and the simple owner journey remain intact
-Viewport: mobile
-Covers: Meta connection regression, owner navigation, storefront access, unconnected publishing guardrail
-Description: Verifies the style hardening does not interfere with Glow Hub's daily owner flow or secure Meta boundary.
-
-Steps:
-1. Move through Today, Bookings, Clients, Growth and My Business using the persistent mobile navigation
-2. Open My Business → Settings and review Facebook, Instagram and WhatsApp Business connections
-3. Return to Growth and choose Publish on a Meta channel that is not connected
-
-Expected: Daily navigation remains usable, social Settings still show Connect/Not connected states without token fields, and Growth cannot report a campaign as published without a real Meta connection.
+Expected: The owner enters the private app normally, Website offers the three full website designs, daily navigation remains usable, and Meta cards never expose access tokens, App Secrets or manual Page IDs.
