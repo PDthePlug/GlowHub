@@ -1,6 +1,7 @@
 import { routeResponseToResponse } from '@appdeploy/sdk';
-import { handler, communicationAutomationHandler } from 'https://raw.githubusercontent.com/PDthePlug/GlowHub/388d8628e2aef2385561c5abe9acb3a5542c4dd5/backend/index.ts';
-import { discoveryRoutes } from 'https://raw.githubusercontent.com/PDthePlug/GlowHub/388d8628e2aef2385561c5abe9acb3a5542c4dd5/backend/discovery.ts';
+import { handler, communicationAutomationHandler } from 'https://raw.githubusercontent.com/PDthePlug/GlowHub/e1543ef386fb8c45b0f9704b067373dadb392afb/backend/index.ts';
+import { discoveryRoutes } from 'https://raw.githubusercontent.com/PDthePlug/GlowHub/e1543ef386fb8c45b0f9704b067373dadb392afb/backend/discovery.ts';
+import { serviceManagementHandler } from 'https://raw.githubusercontent.com/PDthePlug/GlowHub/e1543ef386fb8c45b0f9704b067373dadb392afb/backend/service-management.ts';
 
 const cors={
   'access-control-allow-origin':'*',
@@ -22,6 +23,9 @@ Deno.serve(async(req:Request)=>{
     const query:Record<string,string>={};new URL(req.url).searchParams.forEach((v,k)=>query[k]=v);
     const result=await (discoveryRoutes['GET /api/discover'][0] as any)({query});
     return withCors(routeResponseToResponse(result));
+  }
+  if((req.method==='PUT'||req.method==='DELETE')&&/^\/api\/services\/[^/]+$/.test(path)){
+    return withCors(await (serviceManagementHandler as any)(req));
   }
   if(Date.now()-lastMaintenance>60000&&(path.startsWith('/api/workspace/')||path.startsWith('/api/booking/')||path.startsWith('/api/growth/'))){
     lastMaintenance=Date.now();
