@@ -18,7 +18,7 @@ Glow Hub keeps the customer journey predictable but **does not make every busine
 - **Warm & soft / soft-luxe** — split editorial hero, rounded imagery, softer serif hierarchy, portfolio-led storytelling and card-based services.
 - **Dark & bold / editorial** — cinematic full-bleed hero, heavy typography, hard-edged gallery, numbered service rows and high-contrast surfaces.
 
-Accent colour, logo, cover photo and portfolio further individualise each template. Booking rules, availability and customer data remain shared underneath.
+Accent colour, logo, cover photo and portfolio further individualise each template. The owner preview reflects the structural differences before saving. Booking rules, availability and customer data remain shared underneath, so a design switch never loses business data.
 
 ## Business experience
 
@@ -26,4 +26,6 @@ The private owner app remains separate from discovery: Today, Bookings, Clients,
 
 ## Deployment migration
 
-AppDeploy production remains on the previously verified v31 release because that account reached its lifetime deployment limit (125/125). The approved direction is to migrate Glow Hub to a real Vercel production deployment with a portable backend before this branch is merged to `main`.
+AppDeploy production remains on the previously verified v31 release because that account reached its lifetime deployment limit (125/125). The approved production direction is Vercel with a portable backend rather than leaving production dependent on AppDeploy-injected SDK packages.
+
+The feature branch must stay unmerged until the Vercel backend/auth/storage migration has been provisioned, the acceptance journeys have passed there, and the production deployment is ready to replace the old host.
