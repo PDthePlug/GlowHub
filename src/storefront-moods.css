@@ -1,2 +1,3 @@
-/* Storefront template architecture now lives in premium-storefront.css.
-   This file intentionally remains as the import boundary for future template-specific motion or accessibility refinements. */
+/* Glow Hub storefront template architecture is implemented in premium-storefront.css.
+   This import boundary is intentionally retained for future template-specific motion,
+   reduced-motion handling and accessibility refinements without changing owner data. */
