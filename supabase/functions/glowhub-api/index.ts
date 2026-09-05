@@ -1,6 +1,6 @@
 import { routeResponseToResponse } from '@appdeploy/sdk';
-import { handler, communicationAutomationHandler } from 'https://raw.githubusercontent.com/PDthePlug/GlowHub/833c1a2ae4df379bdbda8f1db9a7d330427e379a/backend/index.ts';
-import { discoveryRoutes } from 'https://raw.githubusercontent.com/PDthePlug/GlowHub/833c1a2ae4df379bdbda8f1db9a7d330427e379a/backend/discovery.ts';
+import { handler, communicationAutomationHandler } from 'https://raw.githubusercontent.com/PDthePlug/GlowHub/388d8628e2aef2385561c5abe9acb3a5542c4dd5/backend/index.ts';
+import { discoveryRoutes } from 'https://raw.githubusercontent.com/PDthePlug/GlowHub/388d8628e2aef2385561c5abe9acb3a5542c4dd5/backend/discovery.ts';
 
 const cors={'access-control-allow-origin':'*','access-control-allow-headers':'authorization, x-client-info, apikey, content-type','access-control-allow-methods':'GET,POST,PUT,DELETE,OPTIONS'};
 let lastMaintenance=0;
