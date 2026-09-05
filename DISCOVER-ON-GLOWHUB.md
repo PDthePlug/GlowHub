@@ -1,19 +1,29 @@
 # Discover on Glow Hub
 
-This branch contains the customer-discovery landing page and profile-first storefront milestone requested after reviewing Fresha.
+This branch develops Glow Hub into two connected experiences: **Discover on Glow Hub** for customers and **Run on Glow Hub** for businesses.
 
-## Scope
+## Customer experience
 
 - Customer-first Glow Hub home with service, location, date and category discovery.
-- Public discovery results built only from already-published, bookable storefront projections.
-- Real services, prices, ratings and imagery only; no invented marketplace scale.
-- Date filtering uses saved business working days. Final slot availability remains enforced by the existing booking engine.
-- Profile-first storefront with business summary, gallery, service booking actions, real reviews, About, saved opening hours and WhatsApp.
-- Existing storefront look/accent choices remain as subtle brand skins rather than separate page architectures.
-- Owner app and Meta configuration remain separate from public discovery.
+- Public results are built only from real published, bookable Glow Hub businesses.
+- Real services, prices, ratings, work and opening hours only; no invented marketplace scale.
+- Date filtering respects saved business working days; final slot availability remains enforced by the booking engine.
+- Public profiles keep a familiar customer hierarchy: business identity, photos, services/prices, reviews, About/opening hours, WhatsApp and booking.
 
-## Deployment state
+## Storefront identity
 
-Production is still on the previously verified AppDeploy v31 release. AppDeploy rejected the attempted release because the account reached its lifetime deploy limit (125/125), before any production changes were applied.
+Glow Hub keeps the customer journey predictable but **does not make every business use the same website design**. Customize My Website selects a true template architecture:
 
-Do not merge this branch into production until it can be built and acceptance-tested in a deployment environment.
+- **Clean white / minimal** — restrained business header, crisp sans-serif hierarchy, clean collage, dense service clarity and generous white space.
+- **Warm & soft / soft-luxe** — split editorial hero, rounded imagery, softer serif hierarchy, portfolio-led storytelling and card-based services.
+- **Dark & bold / editorial** — cinematic full-bleed hero, heavy typography, hard-edged gallery, numbered service rows and high-contrast surfaces.
+
+Accent colour, logo, cover photo and portfolio further individualise each template. Booking rules, availability and customer data remain shared underneath.
+
+## Business experience
+
+The private owner app remains separate from discovery: Today, Bookings, Clients, Growth and My Business. Meta authorization remains token-free for business owners.
+
+## Deployment migration
+
+AppDeploy production remains on the previously verified v31 release because that account reached its lifetime deployment limit (125/125). The approved direction is to migrate Glow Hub to a real Vercel production deployment with a portable backend before this branch is merged to `main`.
