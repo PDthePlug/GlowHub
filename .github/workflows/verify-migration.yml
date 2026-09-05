@@ -1,0 +1,67 @@
+name: Verify Glow Hub migration
+
+on:
+  push:
+    branches: [feature/discover-on-glowhub]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Use Node 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: package.json
+
+      - name: Install dependencies
+        run: npm install --no-audit --no-fund
+
+      - name: Build production frontend
+        run: npm run build
+
+      - name: Verify Supabase Edge API
+        shell: bash
+        run: |
+          set -euo pipefail
+          API='https://lnxhtdaocawrqlldhxcz.supabase.co/functions/v1/glowhub-api'
+          KEY='sb_publishable_Mv-3DPERIRKdQjOePp5JFQ_M5bbMW4x'
+
+          echo 'Health check'
+          curl --fail --silent --show-error \
+            -H "apikey: $KEY" \
+            "$API/api/_healthcheck" | tee /tmp/health.json
+          grep -q 'Glow Hub' /tmp/health.json
+
+          echo 'Plans'
+          curl --fail --silent --show-error \
+            -H "apikey: $KEY" \
+            "$API/api/plans" | tee /tmp/plans.json
+          grep -q 'plans' /tmp/plans.json
+
+          echo 'Discovery'
+          curl --fail --silent --show-error \
+            -H "apikey: $KEY" \
+            "$API/api/discover" | tee /tmp/discover.json
+          grep -q 'items' /tmp/discover.json
+
+          echo 'Protected owner route rejects anonymous access'
+          STATUS=$(curl --silent --output /tmp/me.json --write-out '%{http_code}' \
+            -H "apikey: $KEY" \
+            "$API/api/me")
+          cat /tmp/me.json
+          test "$STATUS" = '401'
+          grep -q 'Sign in required' /tmp/me.json
+
+      - name: Record built artifact summary
+        run: |
+          test -f dist/index.html
+          find dist -type f -maxdepth 3 -print | sort
