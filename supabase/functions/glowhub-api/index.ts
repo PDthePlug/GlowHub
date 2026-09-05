@@ -1,7 +1,8 @@
 import { routeResponseToResponse } from '@appdeploy/sdk';
-import { handler, communicationAutomationHandler } from 'https://raw.githubusercontent.com/PDthePlug/GlowHub/0850e947d219a44306a684f24384cf6b5ba76a20/backend/index.ts';
-import { discoveryRoutes } from 'https://raw.githubusercontent.com/PDthePlug/GlowHub/0850e947d219a44306a684f24384cf6b5ba76a20/backend/discovery.ts';
-import { serviceManagementHandler } from 'https://raw.githubusercontent.com/PDthePlug/GlowHub/0850e947d219a44306a684f24384cf6b5ba76a20/backend/service-management.ts';
+import { handler, communicationAutomationHandler } from 'https://raw.githubusercontent.com/PDthePlug/GlowHub/26aa42b12dd93dd1e01bfe5a57862515e7c099e0/backend/index.ts';
+import { discoveryRoutes } from 'https://raw.githubusercontent.com/PDthePlug/GlowHub/26aa42b12dd93dd1e01bfe5a57862515e7c099e0/backend/discovery.ts';
+import { serviceManagementHandler } from 'https://raw.githubusercontent.com/PDthePlug/GlowHub/26aa42b12dd93dd1e01bfe5a57862515e7c099e0/backend/service-management.ts';
+import { heroGalleryHandler } from 'https://raw.githubusercontent.com/PDthePlug/GlowHub/26aa42b12dd93dd1e01bfe5a57862515e7c099e0/backend/hero-gallery.ts';
 
 const cors={
   'access-control-allow-origin':'*',
@@ -19,6 +20,9 @@ function withCors(response:Response){
 Deno.serve(async(req:Request)=>{
   if(req.method==='OPTIONS')return new Response(null,{status:204,headers:cors});
   const path=pathOf(req);
+  if(path.startsWith('/api/hero-gallery')){
+    return withCors(await (heroGalleryHandler as any)(req));
+  }
   if(req.method==='GET'&&path==='/api/discover'){
     const query:Record<string,string>={};new URL(req.url).searchParams.forEach((v,k)=>query[k]=v);
     const result=await (discoveryRoutes['GET /api/discover'][0] as any)({query});
