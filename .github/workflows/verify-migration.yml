@@ -2,7 +2,7 @@ name: Verify Glow Hub production
 
 on:
   push:
-    branches: [main, feature/discover-on-glowhub, feature/service-media-gallery, feature/premium-marketplace-service-crud, fix/allow-last-service-delete]
+    branches: [main, feature/discover-on-glowhub, feature/service-media-gallery, feature/premium-marketplace-service-crud, fix/allow-last-service-delete, feature/storefront-visual-hardening]
   workflow_dispatch:
 
 permissions:
@@ -58,6 +58,20 @@ jobs:
           grep -q 'Edit service' src/ServicesManager.tsx
           grep -q 'temporarily stop appearing in Discover' src/ServicesManager.tsx
           grep -q "ServicesSimple.*ServicesManager" src/BusinessSimple.tsx
+
+      - name: Verify storefront visual hardening contract
+        shell: bash
+        run: |
+          set -euo pipefail
+          grep -q 'MAX_HERO_IMAGES=5' backend/hero-gallery.ts
+          grep -q 'hero-gallery-public' backend/hero-gallery.ts
+          grep -q 'Hero photos ·' src/StorefrontStudio.tsx
+          grep -q "heroImageUrls" src/PremiumStorefront.tsx
+          grep -q "slice(0,4)" src/PremiumStorefront.tsx
+          grep -q 'View all .* services' src/PremiumStorefront.tsx
+          grep -q 'sf-minimal-gallery.count-5' src/premium-v3.css
+          grep -q "PublicProfile" src/main.tsx
+          grep -q "portfolio" src/PublicProfile.tsx
 
       - name: Build production frontend
         run: npm run build
