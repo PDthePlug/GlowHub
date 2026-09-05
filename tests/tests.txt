@@ -1,0 +1,64 @@
+# Tests
+
+## Test 1 - Owner chooses a storefront look and it persists [sanity]
+Viewport: desktop
+Covers: PUT /api/storefront-settings/:businessId, storefront style persistence, public theme rendering, live preview
+Description: Verifies an owner can change the website feel with a few safe choices and the same choice reaches the real customer storefront.
+
+Steps:
+1. Sign in as an owner and open My Business → Website
+2. Choose Clean white and a different Main colour while watching the phone preview update
+3. Save the website look, refresh the owner page, then open the public business website
+
+Expected: Clean white and the selected accent remain selected after refresh, the public storefront uses the same bright white look, and the first screen is rendered in the clean minimal treatment rather than the dark photo-first treatment.
+
+## Test 2 - New business receives a useful category-aware starting point
+Viewport: desktop
+Covers: storefront-settings creation, category-aware defaults, backwards-compatible theme storage
+Description: Verifies Glow Hub chooses a sensible starting look without asking a new owner to design a website from scratch.
+
+Setup:
+1. Create a new barber business with one real bookable service
+
+Steps:
+1. Open My Business → Website for the new barber
+2. Review the three Website look choices and Main colour choices
+3. Open the public storefront without changing the defaults
+
+Expected: Dark & bold is presented as the recommended starting look for the barbershop, Ink is the stored starting accent, and the public storefront renders normally without exposing Editorial, Soft Luxe or Minimal terminology.
+
+## Test 3 - Storefront setup stays simple on mobile
+Viewport: mobile
+Covers: responsive storefront editor, non-page-builder customization, live phone preview, portfolio and review setup
+Description: Verifies the storefront editor stays usable on a phone and keeps advanced web-design decisions out of the owner's path.
+
+Steps:
+1. Open My Business → Website on mobile
+2. Switch between Warm & soft and Clean white, then change the Main colour
+3. Scroll through Logo & cover photo, Your work, Reviews and More website settings
+
+Expected: The page remains inside the mobile viewport, the phone preview updates without horizontal scrolling, and there are no controls for fonts, card radius, section ordering, navigation style, CSS or other page-builder settings.
+
+## Test 4 - Booking and Growth still use the hardened business schedule
+Viewport: mobile
+Covers: public booking regression, business-hours enforcement, Growth availability regression, storefront route compatibility
+Description: Verifies storefront styling does not change booking or Growth's shared availability rules.
+
+Steps:
+1. Configure working hours with one future open day and one closed day
+2. Open the styled public storefront and booking page, then inspect both dates
+3. Return to Growth and refresh the current opportunity
+
+Expected: The closed day has no public booking slots, the open day only offers in-hours slots, and Growth's open-capacity signal still reflects the same saved schedule regardless of storefront look.
+
+## Test 5 - Social connections and the simple owner journey remain intact
+Viewport: mobile
+Covers: Meta connection regression, owner navigation, storefront access, unconnected publishing guardrail
+Description: Verifies the style hardening does not interfere with Glow Hub's daily owner flow or secure Meta boundary.
+
+Steps:
+1. Move through Today, Bookings, Clients, Growth and My Business using the persistent mobile navigation
+2. Open My Business → Settings and review Facebook, Instagram and WhatsApp Business connections
+3. Return to Growth and choose Publish on a Meta channel that is not connected
+
+Expected: Daily navigation remains usable, social Settings still show Connect/Not connected states without token fields, and Growth cannot report a campaign as published without a real Meta connection.

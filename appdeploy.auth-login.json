@@ -1,0 +1,18 @@
+{
+  "methods": [
+    "google",
+    "apple",
+    "x"
+  ],
+  "headline": "Welcome to Glow Hub",
+  "subtitle": "Sign in to manage bookings, clients, your website and Growth.",
+  "style": {
+    "mode": "light",
+    "accentColor": "#171417",
+    "backgroundColor": "#FBF8F2",
+    "panelColor": "#FFFFFF",
+    "textColor": "#171417",
+    "fontFamily": "Inter, system-ui, sans-serif",
+    "borderRadius": 18
+  }
+}

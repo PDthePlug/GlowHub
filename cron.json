@@ -1,0 +1,9 @@
+[
+  {
+    "name": "communication-automation",
+    "cron": "*/15 * * * *",
+    "handler": "communicationAutomationHandler",
+    "timezone": "Africa/Johannesburg",
+    "payload": { "mode": "communications-and-launch-maintenance" }
+  }
+]
