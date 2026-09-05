@@ -5,7 +5,7 @@ import './public-waitlist.css';
 
 type Service={id:string;name:string;price:number;duration:number;description:string};
 type Storefront={name:string;slug:string;location:string;services:Service[]};
-function todayIso(){return new Date().toISOString().slice(0,10)}
+function todayIso(){return new Intl.DateTimeFormat('en-CA',{timeZone:'Africa/Johannesburg',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date())}
 function messageOf(error:unknown){const e=error as{response?:{data?:{error?:string}};message?:string};return e.response?.data?.error||e.message||'Something went wrong. Try again.'}
 
 export default function PublicWaitlist({slug}:{slug:string}){
