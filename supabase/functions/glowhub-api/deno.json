@@ -1,17 +1,18 @@
 {
   "nodeModulesDir": "auto",
   "imports": {
-    "@appdeploy/sdk": "https://raw.githubusercontent.com/PDthePlug/GlowHub/388d8628e2aef2385561c5abe9acb3a5542c4dd5/supabase/functions/glowhub-api/appdeploy-sdk.ts",
-    "https://raw.githubusercontent.com/PDthePlug/GlowHub/388d8628e2aef2385561c5abe9acb3a5542c4dd5/backend/business-categories": "https://raw.githubusercontent.com/PDthePlug/GlowHub/388d8628e2aef2385561c5abe9acb3a5542c4dd5/backend/business-categories.ts",
-    "https://raw.githubusercontent.com/PDthePlug/GlowHub/388d8628e2aef2385561c5abe9acb3a5542c4dd5/backend/business-hours": "https://raw.githubusercontent.com/PDthePlug/GlowHub/388d8628e2aef2385561c5abe9acb3a5542c4dd5/backend/business-hours.ts",
-    "https://raw.githubusercontent.com/PDthePlug/GlowHub/388d8628e2aef2385561c5abe9acb3a5542c4dd5/backend/communications": "https://raw.githubusercontent.com/PDthePlug/GlowHub/388d8628e2aef2385561c5abe9acb3a5542c4dd5/backend/communications.ts",
-    "https://raw.githubusercontent.com/PDthePlug/GlowHub/388d8628e2aef2385561c5abe9acb3a5542c4dd5/backend/discovery": "https://raw.githubusercontent.com/PDthePlug/GlowHub/388d8628e2aef2385561c5abe9acb3a5542c4dd5/backend/discovery.ts",
-    "https://raw.githubusercontent.com/PDthePlug/GlowHub/388d8628e2aef2385561c5abe9acb3a5542c4dd5/backend/entitlements": "https://raw.githubusercontent.com/PDthePlug/GlowHub/388d8628e2aef2385561c5abe9acb3a5542c4dd5/backend/entitlements.ts",
-    "https://raw.githubusercontent.com/PDthePlug/GlowHub/388d8628e2aef2385561c5abe9acb3a5542c4dd5/backend/growth-activation": "https://raw.githubusercontent.com/PDthePlug/GlowHub/388d8628e2aef2385561c5abe9acb3a5542c4dd5/backend/growth-activation.ts",
-    "https://raw.githubusercontent.com/PDthePlug/GlowHub/388d8628e2aef2385561c5abe9acb3a5542c4dd5/backend/growth-engine": "https://raw.githubusercontent.com/PDthePlug/GlowHub/388d8628e2aef2385561c5abe9acb3a5542c4dd5/backend/growth-engine.ts",
-    "https://raw.githubusercontent.com/PDthePlug/GlowHub/388d8628e2aef2385561c5abe9acb3a5542c4dd5/backend/launch-readiness": "https://raw.githubusercontent.com/PDthePlug/GlowHub/388d8628e2aef2385561c5abe9acb3a5542c4dd5/backend/launch-readiness.ts",
-    "https://raw.githubusercontent.com/PDthePlug/GlowHub/388d8628e2aef2385561c5abe9acb3a5542c4dd5/backend/meta-publishing": "https://raw.githubusercontent.com/PDthePlug/GlowHub/388d8628e2aef2385561c5abe9acb3a5542c4dd5/backend/meta-publishing.ts",
-    "https://raw.githubusercontent.com/PDthePlug/GlowHub/388d8628e2aef2385561c5abe9acb3a5542c4dd5/backend/realtime-subscribers": "https://raw.githubusercontent.com/PDthePlug/GlowHub/388d8628e2aef2385561c5abe9acb3a5542c4dd5/backend/realtime-subscribers.ts",
-    "https://raw.githubusercontent.com/PDthePlug/GlowHub/388d8628e2aef2385561c5abe9acb3a5542c4dd5/backend/storefront-marketplace": "https://raw.githubusercontent.com/PDthePlug/GlowHub/388d8628e2aef2385561c5abe9acb3a5542c4dd5/backend/storefront-marketplace.ts"
+    "@appdeploy/sdk": "https://raw.githubusercontent.com/PDthePlug/GlowHub/e1543ef386fb8c45b0f9704b067373dadb392afb/supabase/functions/glowhub-api/appdeploy-sdk.ts",
+    "https://raw.githubusercontent.com/PDthePlug/GlowHub/e1543ef386fb8c45b0f9704b067373dadb392afb/backend/business-categories": "https://raw.githubusercontent.com/PDthePlug/GlowHub/e1543ef386fb8c45b0f9704b067373dadb392afb/backend/business-categories.ts",
+    "https://raw.githubusercontent.com/PDthePlug/GlowHub/e1543ef386fb8c45b0f9704b067373dadb392afb/backend/business-hours": "https://raw.githubusercontent.com/PDthePlug/GlowHub/e1543ef386fb8c45b0f9704b067373dadb392afb/backend/business-hours.ts",
+    "https://raw.githubusercontent.com/PDthePlug/GlowHub/e1543ef386fb8c45b0f9704b067373dadb392afb/backend/communications": "https://raw.githubusercontent.com/PDthePlug/GlowHub/e1543ef386fb8c45b0f9704b067373dadb392afb/backend/communications.ts",
+    "https://raw.githubusercontent.com/PDthePlug/GlowHub/e1543ef386fb8c45b0f9704b067373dadb392afb/backend/discovery": "https://raw.githubusercontent.com/PDthePlug/GlowHub/e1543ef386fb8c45b0f9704b067373dadb392afb/backend/discovery.ts",
+    "https://raw.githubusercontent.com/PDthePlug/GlowHub/e1543ef386fb8c45b0f9704b067373dadb392afb/backend/entitlements": "https://raw.githubusercontent.com/PDthePlug/GlowHub/e1543ef386fb8c45b0f9704b067373dadb392afb/backend/entitlements.ts",
+    "https://raw.githubusercontent.com/PDthePlug/GlowHub/e1543ef386fb8c45b0f9704b067373dadb392afb/backend/growth-activation": "https://raw.githubusercontent.com/PDthePlug/GlowHub/e1543ef386fb8c45b0f9704b067373dadb392afb/backend/growth-activation.ts",
+    "https://raw.githubusercontent.com/PDthePlug/GlowHub/e1543ef386fb8c45b0f9704b067373dadb392afb/backend/growth-engine": "https://raw.githubusercontent.com/PDthePlug/GlowHub/e1543ef386fb8c45b0f9704b067373dadb392afb/backend/growth-engine.ts",
+    "https://raw.githubusercontent.com/PDthePlug/GlowHub/e1543ef386fb8c45b0f9704b067373dadb392afb/backend/launch-readiness": "https://raw.githubusercontent.com/PDthePlug/GlowHub/e1543ef386fb8c45b0f9704b067373dadb392afb/backend/launch-readiness.ts",
+    "https://raw.githubusercontent.com/PDthePlug/GlowHub/e1543ef386fb8c45b0f9704b067373dadb392afb/backend/meta-publishing": "https://raw.githubusercontent.com/PDthePlug/GlowHub/e1543ef386fb8c45b0f9704b067373dadb392afb/backend/meta-publishing.ts",
+    "https://raw.githubusercontent.com/PDthePlug/GlowHub/e1543ef386fb8c45b0f9704b067373dadb392afb/backend/realtime-subscribers": "https://raw.githubusercontent.com/PDthePlug/GlowHub/e1543ef386fb8c45b0f9704b067373dadb392afb/backend/realtime-subscribers.ts",
+    "https://raw.githubusercontent.com/PDthePlug/GlowHub/e1543ef386fb8c45b0f9704b067373dadb392afb/backend/storefront-marketplace": "https://raw.githubusercontent.com/PDthePlug/GlowHub/e1543ef386fb8c45b0f9704b067373dadb392afb/backend/storefront-marketplace.ts",
+    "https://raw.githubusercontent.com/PDthePlug/GlowHub/e1543ef386fb8c45b0f9704b067373dadb392afb/backend/service-management": "https://raw.githubusercontent.com/PDthePlug/GlowHub/e1543ef386fb8c45b0f9704b067373dadb392afb/backend/service-management.ts"
   }
 }
