@@ -2,6 +2,7 @@ import { FormEvent,useEffect,useState } from 'react';
 import { Loader2,X } from 'lucide-react';
 import { auth } from '@appdeploy/client';
 import App from './App';
+import './business-auth.css';
 
 type Mode='signin'|'signup';
 
