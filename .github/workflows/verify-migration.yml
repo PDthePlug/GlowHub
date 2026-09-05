@@ -45,6 +45,17 @@ jobs:
           API='https://lnxhtdaocawrqlldhxcz.supabase.co/functions/v1/glowhub-api'
           KEY='sb_publishable_Mv-3DPERIRKdQjOePp5JFQ_M5bbMW4x'
 
+          echo 'Browser CORS preflight'
+          curl --silent --show-error --dump-header /tmp/cors.headers --output /tmp/cors.body \
+            -X OPTIONS \
+            -H 'Origin: https://glowhub-three.vercel.app' \
+            -H 'Access-Control-Request-Method: GET' \
+            -H 'Access-Control-Request-Headers: authorization,apikey,content-type' \
+            "$API/api/me"
+          grep -Eq '^HTTP/[0-9.]+ 20[04]' /tmp/cors.headers
+          grep -qi '^access-control-allow-origin: \*' /tmp/cors.headers
+          grep -qi '^access-control-allow-methods: .*GET' /tmp/cors.headers
+
           echo 'Health check'
           curl --fail --silent --show-error \
             -H "apikey: $KEY" \
