@@ -2,7 +2,7 @@ name: Verify Glow Hub production
 
 on:
   push:
-    branches: [main, feature/discover-on-glowhub, feature/service-media-gallery, feature/premium-marketplace-service-crud]
+    branches: [main, feature/discover-on-glowhub, feature/service-media-gallery, feature/premium-marketplace-service-crud, fix/allow-last-service-delete]
   workflow_dispatch:
 
 permissions:
@@ -53,8 +53,10 @@ jobs:
           grep -q 'grid-template-columns:repeat(2' src/discover-v2.css
           grep -q 'PUT /api/services/:id' backend/service-management.ts
           grep -q 'DELETE /api/services/:id' backend/service-management.ts
+          grep -q 'remainingServices' backend/service-management.ts
+          grep -q 'services.length>0' backend/discovery.ts
           grep -q 'Edit service' src/ServicesManager.tsx
-          grep -q 'Delete' src/ServicesManager.tsx
+          grep -q 'temporarily stop appearing in Discover' src/ServicesManager.tsx
           grep -q "ServicesSimple.*ServicesManager" src/BusinessSimple.tsx
 
       - name: Build production frontend
