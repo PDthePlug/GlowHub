@@ -1,0 +1,32 @@
+import { db,error,json,requireAuth,router,storage } from '@appdeploy/sdk';
+
+type Role='owner'|'manager'|'staff';
+type Member={businessId:string;role:Role;businessName:string};
+type Business={slug:string};
+type StorefrontSettings={id:string;heroImagePath?:string;[key:string]:unknown};
+type Manifest={paths:string[];updatedAt:number};
+
+const MAX_HERO_IMAGES=5;
+function safeText(value:unknown,max=300){return String(value??'').trim().slice(0,max)}
+function cleanSlug(value:string){return String(value||'').toLowerCase().trim().replace(/['’]/g,'').replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'').slice(0,48)}
+function extFor(contentType:string){return contentType==='image/png'?'png':contentType==='image/webp'?'webp':'jpg'}
+function validateImage(base64:string,contentType:string){if(!['image/jpeg','image/png','image/webp'].includes(contentType))throw new Error('Use a JPG, PNG or WebP image');if(!base64||base64.length>5000000||!/^[A-Za-z0-9+/=]+$/.test(base64))throw new Error('Image is invalid or too large')}
+function manifestPath(businessId:string){return`hero-galleries/${businessId}.json`}
+function storefrontPath(slug:string){return`storefronts/${cleanSlug(slug)}.json`}
+async function memberships(userId:string){return(await db.list<Member>(`memberships:${userId}`,{limit:20})).items}
+async function requireManager(userId:string,businessId:string){return(await memberships(userId)).find(m=>m.businessId===businessId&&['owner','manager'].includes(m.role))||null}
+async function getBusiness(businessId:string){const[business]=await db.get<Business>('businesses',[businessId]);return business?{id:businessId,...business}:null}
+async function settingsRow(businessId:string){return(await db.list<StorefrontSettings>(`storefront-settings:${businessId}`,{limit:1})).items[0]||null}
+async function readManifest(businessId:string){const[file]=await storage.read([manifestPath(businessId)]);if(file?.content){try{const value=JSON.parse(file.content) as Manifest;return Array.isArray(value.paths)?value.paths.filter(Boolean).slice(0,MAX_HERO_IMAGES):[]}catch{}}const settings=await settingsRow(businessId);return settings?.heroImagePath?[settings.heroImagePath]:[]}
+async function signed(paths:string[]){if(!paths.length)return[];const rows=await storage.url(paths);const map=new Map(rows.map(row=>[row.path,row.url]));return paths.map(path=>map.get(path)||'').filter(Boolean)}
+async function syncSettingsAndPublic(businessId:string,paths:string[]){const settings=await settingsRow(businessId);if(settings?.id){const{id,...record}=settings;await db.update(`storefront-settings:${businessId}`,[{id,record:{...record,heroImagePath:paths[0]||'',updatedAt:Date.now()}}])}const business=await getBusiness(businessId);if(!business?.slug)return;const path=storefrontPath(business.slug),[file]=await storage.read([path]);if(!file?.content)return;try{const storefront=JSON.parse(file.content) as Record<string,unknown>&{brand?:Record<string,unknown>};storefront.brand={...(storefront.brand||{}),heroImagePath:paths[0]||undefined,heroImagePaths:paths};await storage.write([{path,content:JSON.stringify(storefront),contentType:'application/json'}])}catch(err){console.warn('Could not sync hero gallery to public storefront',err)}}
+async function writeManifest(businessId:string,paths:string[]){const next=paths.filter(Boolean).slice(0,MAX_HERO_IMAGES);const[ok]=await storage.write([{path:manifestPath(businessId),content:JSON.stringify({paths:next,updatedAt:Date.now()}),contentType:'application/json'}]);if(!ok)throw new Error('Could not save hero gallery');await syncSettingsAndPublic(businessId,next);return next}
+async function galleryResponse(businessId:string){const paths=await readManifest(businessId);return{paths,urls:await signed(paths),count:paths.length,max:MAX_HERO_IMAGES}}
+async function businessIdForSlug(slug:string){const[file]=await storage.read([storefrontPath(slug)]);if(!file?.content)return'';try{return safeText((JSON.parse(file.content) as{businessId?:string}).businessId,100)}catch{return''}}
+
+export const heroGalleryHandler=router({
+  'GET /api/hero-gallery-public/:slug':[async({params})=>{const businessId=await businessIdForSlug(params.slug);if(!businessId)return error('Storefront not found',404);try{return json(await galleryResponse(businessId))}catch{return json({paths:[],urls:[],count:0,max:MAX_HERO_IMAGES})}}],
+  'GET /api/hero-gallery/:businessId':[requireAuth(),async({user,params})=>{if(!(await requireManager(user!.userId,params.businessId)))return error('You do not have permission to edit storefront media',403);return json(await galleryResponse(params.businessId))}],
+  'POST /api/hero-gallery/:businessId':[requireAuth(),async({user,params,body})=>{if(!(await requireManager(user!.userId,params.businessId)))return error('You do not have permission to edit storefront media',403);const i=body as Record<string,unknown>,base64=safeText(i.imageBase64,5000000),contentType=safeText(i.contentType,40);try{validateImage(base64,contentType);const existing=await readManifest(params.businessId);if(existing.length>=MAX_HERO_IMAGES)return error('Your hero gallery already has 5 photos',409);const path=`tenant-media/${params.businessId}/brand/hero-${Date.now()}-${Math.random().toString(36).slice(2,8)}.${extFor(contentType)}`,[written]=await storage.write([{path,content:base64,contentType}]);if(!written)throw new Error('Could not store image');try{const paths=await writeManifest(params.businessId,[...existing,path]);return json({paths,urls:await signed(paths),count:paths.length,max:MAX_HERO_IMAGES},201)}catch(err){await storage.delete([path]);throw err}}catch(err){return error(err instanceof Error?err.message:'Image could not be saved',400)}}],
+  'DELETE /api/hero-gallery/:businessId/:index':[requireAuth(),async({user,params})=>{if(!(await requireManager(user!.userId,params.businessId)))return error('You do not have permission to edit storefront media',403);const index=Number(params.index);if(!Number.isInteger(index)||index<0||index>=MAX_HERO_IMAGES)return error('Choose a valid hero photo',400);try{const existing=await readManifest(params.businessId);if(index>=existing.length)return error('Hero photo not found',404);const removed=existing[index],paths=await writeManifest(params.businessId,existing.filter((_,i)=>i!==index));if(removed)await storage.delete([removed]);return json({paths,urls:await signed(paths),count:paths.length,max:MAX_HERO_IMAGES})}catch(err){return error(err instanceof Error?err.message:'Hero photo could not be removed',400)}}]
+});
