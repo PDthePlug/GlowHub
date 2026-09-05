@@ -1,1 +1,89 @@
-placeholder
+/* Storefront theme continuity: every public surface inherits the selected business design. */
+
+/* Dark & bold — directory pages */
+.sf-theme-editorial.public-profile{--sf-bg:#141414;--sf-alt:#1c1c1c;min-height:100vh;background:#141414;color:#fff}
+.sf-theme-editorial .public-header{border-color:#303030;background:rgba(20,20,20,.94)}
+.sf-theme-editorial .public-name,.sf-theme-editorial .public-identity,.sf-theme-editorial .public-back,.sf-theme-editorial .public-footer,.sf-theme-editorial .public-footer a{color:#fff}
+.sf-theme-editorial .public-desktop-nav>a:not(.public-book){color:#b8b8b8}
+.sf-theme-editorial .public-menu-button{border-color:#343434;background:#1c1c1c;color:#fff}
+.sf-theme-editorial .public-menu-sheet{background:#171717;color:#fff}
+.sf-theme-editorial .public-menu-head button,.sf-theme-editorial .public-menu-sheet nav a{background:#222;color:#fff}
+.sf-theme-editorial .public-menu-sheet nav a.primary{background:#fff;color:#111}
+.sf-theme-editorial .public-page-intro{border-color:#343434}
+.sf-theme-editorial .public-page-intro>p,.sf-theme-editorial .public-page-intro>span,.sf-theme-editorial .public-service-main>span,.sf-theme-editorial .public-review-grid span,.sf-theme-editorial .public-footer>div span{color:#8f8f8f}
+.sf-theme-editorial .public-page-intro h1,.sf-theme-editorial .public-service-top h2,.sf-theme-editorial .public-footer>div b{font-family:Inter,ui-sans-serif,system-ui,sans-serif;font-weight:900;letter-spacing:-.055em}
+.sf-theme-editorial .public-service-grid{gap:.85rem}
+.sf-theme-editorial .public-service-card{border-color:#343434;border-radius:18px;background:#1c1c1c;box-shadow:none;color:#fff}
+.sf-theme-editorial .public-service-card:hover{border-color:#4a4a4a;background:#202020;box-shadow:none}
+.sf-theme-editorial .public-service-main p{color:#aaa}
+.sf-theme-editorial .public-service-main strong{color:#fff}
+.sf-theme-editorial .public-service-book{border-color:#494949;border-radius:3px;background:#fff;color:#111}
+.sf-theme-editorial .public-portfolio-item{border-radius:4px;background:#222}
+.sf-theme-editorial .public-review-grid article{border-color:#343434;border-radius:4px;background:#1c1c1c;box-shadow:none}
+.sf-theme-editorial .public-review-grid blockquote{color:#fff}
+.sf-theme-editorial .public-about-copy{color:#aaa}
+.sf-theme-editorial .public-about-actions>a:not(.public-book){border-color:#3b3b3b;color:#fff}
+.sf-theme-editorial .public-about-media{border-radius:4px;background:#1c1c1c}
+.sf-theme-editorial .public-none{background:#1c1c1c;color:#aaa}
+.sf-theme-editorial .public-footer{border-color:#343434}
+
+/* Dark & bold — homepage services should read as interactive cards, not divider rows. */
+.sf-editorial-template .sf-services-editorial .sf-service-collection{display:grid;gap:.8rem;border-top:0}
+.sf-editorial-template .sf-services-editorial .sf-service-collection article{grid-template-columns:48px minmax(0,1fr) auto;border:1px solid #343434;border-radius:16px;background:#1b1b1b;padding:1.2rem}
+.sf-editorial-template .sf-services-editorial .sf-service-collection article:hover{border-color:#4b4b4b;background:#202020}
+.sf-editorial-template .sf-services-editorial .sf-service-open{display:inline-flex;align-items:center;gap:.3rem;margin-top:.8rem;color:#fff;font-size:.72rem;font-weight:850}
+.sf-editorial-template .sf-services-editorial .sf-service-action a{border-color:#555;background:#fff;color:#111}
+
+/* Warm & soft — directory pages keep the softer editorial language. */
+.sf-theme-soft-luxe.public-profile{--sf-bg:#fbf5ef;--sf-alt:#fffaf6;min-height:100vh;background:#fbf5ef;color:#2b1b24}
+.sf-theme-soft-luxe .public-header{border-color:#eadbd4;background:rgba(251,245,239,.94)}
+.sf-theme-soft-luxe .public-service-card,.sf-theme-soft-luxe .public-review-grid article{border-color:#eadbd4;border-radius:28px;background:#fffaf6;box-shadow:0 16px 40px rgba(81,56,58,.05)}
+.sf-theme-soft-luxe .public-service-book,.sf-theme-soft-luxe .public-book{border-radius:999px}
+.sf-theme-soft-luxe .public-portfolio-item{border-radius:28px}
+.sf-theme-soft-luxe .public-about-media{border-radius:36px}
+.sf-theme-soft-luxe .public-menu-sheet{background:#fbf5ef}
+
+/* Clean white remains crisp and restrained. */
+.sf-theme-minimal.public-profile{--sf-bg:#fff;--sf-alt:#f8f8f7;background:#fff;color:#1c1917}
+.sf-theme-minimal .public-page-intro h1,.sf-theme-minimal .public-footer>div b{font-family:Inter,ui-sans-serif,system-ui,sans-serif;font-weight:800;letter-spacing:-.06em}
+.sf-theme-minimal .public-service-card,.sf-theme-minimal .public-review-grid article,.sf-theme-minimal .public-portfolio-item,.sf-theme-minimal .public-about-media{border-radius:10px}
+
+/* Service detail strengthens the same type hierarchy as Dark & Bold. */
+.theme-editorial .svc-copy h1,.theme-editorial .svc-proof-head h2{font-family:Inter,ui-sans-serif,system-ui,sans-serif;font-weight:900;letter-spacing:-.06em}
+.theme-editorial .svc-proof{border-radius:4px}
+.theme-editorial .svc-primary,.theme-editorial .svc-top-book,.theme-editorial .svc-mobile-bar a{border-radius:3px}
+
+/* Booking theme inheritance */
+.booking-page.theme-editorial{background:#141414;color:#fff}
+.booking-page.theme-editorial .booking-back,.booking-page.theme-editorial .booking-intro>span,.booking-page.theme-editorial .booking-muted,.booking-page.theme-editorial .booking-step-head p,.booking-page.theme-editorial .booking-summary>p,.booking-page.theme-editorial .booking-summary-row span,.booking-page.theme-editorial .booking-summary small{color:#929292}
+.booking-page.theme-editorial .booking-intro,.booking-page.theme-editorial .booking-step{border-color:#343434}
+.booking-page.theme-editorial .booking-intro h1,.booking-page.theme-editorial .booking-step-head h2,.booking-page.theme-editorial .booking-summary h2,.booking-page.theme-editorial .booking-service-summary strong,.booking-page.theme-editorial .booking-success h1{font-family:Inter,ui-sans-serif,system-ui,sans-serif;font-weight:900;letter-spacing:-.055em}
+.booking-page.theme-editorial .booking-step-head>span{border-color:#4a4a4a}
+.booking-page.theme-editorial .booking-step select,.booking-page.theme-editorial .booking-date,.booking-page.theme-editorial .booking-fields input,.booking-page.theme-editorial .booking-fields textarea,.booking-page.theme-editorial .booking-service-summary,.booking-page.theme-editorial .booking-summary,.booking-page.theme-editorial .booking-times>button{border-color:#343434;background:#1c1c1c;color:#fff}
+.booking-page.theme-editorial .booking-times>button.selected,.booking-page.theme-editorial .booking-summary button{border-color:#fff;background:#fff;color:#111}
+.booking-page.theme-editorial .booking-summary-row{border-color:#343434}
+.booking-page.theme-editorial .booking-no-times a{color:#fff}
+.booking-page.theme-soft-luxe{background:#fbf5ef;color:#2b1b24}
+.booking-page.theme-soft-luxe .booking-service-summary,.booking-page.theme-soft-luxe .booking-summary,.booking-page.theme-soft-luxe .booking-step select,.booking-page.theme-soft-luxe .booking-date,.booking-page.theme-soft-luxe .booking-fields input,.booking-page.theme-soft-luxe .booking-fields textarea{border-color:#eadbd4;background:#fffaf6}
+.booking-page.theme-soft-luxe .booking-summary,.booking-page.theme-soft-luxe .booking-service-summary{border-radius:26px}
+
+/* Waitlist theme inheritance */
+.waitlist-page.theme-editorial{background:#141414;color:#fff}
+.waitlist-page.theme-editorial .waitlist-back,.waitlist-page.theme-editorial .waitlist-shell>header>span,.waitlist-page.theme-editorial .waitlist-shell>header>p,.waitlist-page.theme-editorial .waitlist-shell label>span,.waitlist-page.theme-editorial .waitlist-shell form>small{color:#929292}
+.waitlist-page.theme-editorial .waitlist-shell h1,.waitlist-page.theme-editorial .waitlist-success h1{font-family:Inter,ui-sans-serif,system-ui,sans-serif;font-weight:900;letter-spacing:-.055em}
+.waitlist-page.theme-editorial .waitlist-shell form,.waitlist-page.theme-editorial .waitlist-shell input,.waitlist-page.theme-editorial .waitlist-shell select{border-color:#343434;background:#1c1c1c;color:#fff}
+.waitlist-page.theme-editorial .waitlist-shell button,.waitlist-page.theme-editorial .waitlist-success>a{background:#fff;color:#111;border-radius:3px}
+.waitlist-page.theme-soft-luxe{background:#fbf5ef;color:#2b1b24}
+.waitlist-page.theme-soft-luxe .waitlist-shell form,.waitlist-page.theme-soft-luxe .waitlist-shell input,.waitlist-page.theme-soft-luxe .waitlist-shell select{border-color:#eadbd4;background:#fffaf6}
+.waitlist-page.theme-soft-luxe .waitlist-shell form{border-radius:28px}
+
+@media(max-width:800px){
+  .booking-layout{display:flex;flex-direction:column}
+  .booking-main{order:1}
+  .booking-summary{order:2;margin-top:0;margin-bottom:0}
+}
+@media(max-width:640px){
+  .sf-editorial-template .sf-services-editorial .sf-service-collection article{grid-template-columns:36px minmax(0,1fr);gap:.8rem;padding:1rem}
+  .sf-editorial-template .sf-services-editorial .sf-service-action{grid-column:2;display:flex;align-items:center;justify-content:space-between;text-align:left}
+  .sf-theme-editorial .public-service-card{border-radius:14px}
+}
