@@ -2,7 +2,7 @@
 
 ## Test 1 - Discover a published business and open its profile [sanity]
 Viewport: desktop
-Covers: Discover landing, GET /api/discover, public storefront discovery projection, search by service/location/date, storefront navigation
+Covers: Discover landing, public discovery search, published storefront projection, service/location/date filtering, storefront navigation
 Description: Verifies Glow Hub behaves as a customer discovery destination and only surfaces a real published business.
 
 Setup:
@@ -13,58 +13,61 @@ Steps:
 2. Search for "Silk Press" in Johannesburg on the open date
 3. Open the Discovery Studio result
 
-Expected: Discovery Studio appears as a real search result with its service and price, and opening it shows the customer-facing business profile rather than the old SaaS marketing landing page.
+Expected: Discovery Studio appears with its real service and price, and opening it shows its customer storefront rather than the private business app.
 
-## Test 2 - Profile-first storefront leads directly from services to booking
-Viewport: mobile
-Covers: storefront profile layout, services list, sticky booking action, service preset, public booking journey
-Description: Verifies the redesigned storefront keeps the customer task focused on choosing a service and real available time.
+## Test 2 - Website look changes the real storefront architecture
+Viewport: desktop
+Covers: storefront customization persistence, Clean white template, Warm & soft template, Dark & bold template, accent inheritance, public storefront rendering
+Description: Verifies Customize My Website selects genuinely different website compositions rather than recolouring one shared page.
 
 Setup:
-1. Sign in as a business owner and create a business with one active service and at least one open working day, then open its public website
+1. Sign in as an owner with a business that has a cover photo, at least three portfolio images, one service and one published review
 
 Steps:
-1. Review the business summary, photo area and Services section on mobile
-2. Tap Book for the active service
-3. Choose an available date and time and submit a valid booking request
+1. Open My Business → Website, choose Clean white, save, and open the public storefront
+2. Return to Website, choose Warm & soft, save, and reopen the public storefront
+3. Return to Website, choose Dark & bold, save, and reopen the public storefront
 
-Expected: The storefront stays inside the mobile viewport, the selected service carries into booking, only real available times are shown, and the request is received successfully.
+Expected: Clean white uses a restrained profile header and clean collage, Warm & soft uses a split editorial hero with rounded imagery/card treatment, and Dark & bold uses a cinematic high-contrast hero, heavy type and harder gallery/service treatment. The same booking/service data remains intact in all three.
 
-## Test 3 - Discovery gives a useful empty state instead of invented businesses
-Viewport: desktop
-Covers: discovery search guardrail, no-result state, no fake marketplace data
-Description: Verifies a search with no real published match does not fabricate listings, ratings or popularity.
-
-Steps:
-1. Open the Glow Hub discovery home
-2. Search for "Nonexistent Quantum Treatment 999" in "Nowhere 999"
-3. Review the results area
-
-Expected: A clear no-matching-businesses state is shown with an option to show all businesses, and no fake venue card, rating or booking count appears.
-
-## Test 4 - Real reviews, photos and opening hours appear only when the business has them
-Viewport: desktop
-Covers: storefront profile evidence, real review rendering, portfolio photos, business-hours presentation, WhatsApp fallback
-Description: Verifies the profile-style storefront uses genuine business evidence rather than decorative claims.
+## Test 3 - Profile storefront leads directly from a service to real booking
+Viewport: mobile
+Covers: responsive storefront template, service preset, sticky booking action, working-hours availability, occupied-slot protection, booking request
+Description: Verifies each public website keeps the customer task clear and uses the hardened booking engine.
 
 Setup:
-1. Sign in as an owner, add one real portfolio photo and one published review to a business, and save working hours
+1. Sign in as an owner, keep one active service and one future working day open, then publish the storefront
 
 Steps:
-1. Open the public business profile
-2. Scroll through Photos, Reviews and About
-3. Review the opening-hours block and WhatsApp action
+1. Open the public storefront on mobile and tap Book for the active service
+2. Choose the open date and one displayed available time
+3. Submit a valid customer name and phone number
 
-Expected: The uploaded work and published review appear, the saved weekly hours are shown in About, and WhatsApp remains available without any invented review or team data.
+Expected: The chosen service carries into booking, the page stays inside the mobile viewport, only valid available times are offered, and the booking request is recorded successfully.
 
-## Test 5 - Business owner flow remains separate from customer discovery
+## Test 4 - Discovery and storefronts never invent marketplace evidence
+Viewport: desktop
+Covers: discovery empty state, real review/photo rendering, opening hours, no fake ratings or popularity, WhatsApp fallback
+Description: Verifies Glow Hub only displays customer evidence that a business actually supplied.
+
+Setup:
+1. Publish one business with a real portfolio photo and review, and leave another published business without reviews
+
+Steps:
+1. Search for a phrase/location that has no matching published business and inspect the empty state
+2. Open the business with real evidence and inspect Photos, Reviews and About
+3. Open the business without reviews and inspect its summary
+
+Expected: No-match search shows an empty state rather than fabricated listings; uploaded work/reviews/hours appear where supplied; the business without reviews is shown as new or without a rating rather than receiving an invented score.
+
+## Test 5 - Customer discovery stays separate from the owner operating app
 Viewport: mobile
-Covers: owner sign-in regression, Today/Bookings/Clients/Growth/My Business navigation, Discover-to-business boundary, Meta/settings regression
-Description: Verifies the new customer-first home does not replace or expose the private business operating experience.
+Covers: business sign-in boundary, Today/Bookings/Clients/Growth/My Business regression, storefront editor access, Meta connection security
+Description: Verifies the marketplace direction does not weaken the private owner product or secure social-publishing boundary.
 
 Steps:
-1. From Discover, choose Business sign in and sign in as an existing owner
-2. Move through Today, Bookings, Clients, Growth and My Business
-3. Open Settings and review the Meta connection cards
+1. From Discover, choose Business sign in and authenticate as an existing owner
+2. Move through Today, Bookings, Clients, Growth and My Business, then open Website
+3. Open Settings and review Facebook, Instagram and WhatsApp Business connection cards
 
-Expected: The owner enters the private business app normally, daily navigation remains usable, and Meta connections still use Connect/Not connected states without exposing tokens or secrets.
+Expected: The owner enters the private app normally, Website still offers the three storefront designs, daily navigation remains usable, and Meta cards never expose access tokens, App Secrets or manual Page IDs.
