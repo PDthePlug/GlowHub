@@ -2,6 +2,7 @@ import { useEffect,useMemo,useState } from 'react';
 import { ArrowLeft,ArrowRight,Clock3,Images,MessageCircle,X } from 'lucide-react';
 import { api } from '@appdeploy/client';
 import './service-gallery.css';
+import './theme-continuity.css';
 
 type Theme='editorial'|'soft-luxe'|'minimal';
 type Service={id:string;name:string;price:number;duration:number;description:string};

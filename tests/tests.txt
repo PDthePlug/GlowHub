@@ -88,3 +88,19 @@ Steps:
 4. Repeat booking on a date with availability and submit a booking request
 
 Expected: The journey stays visually consistent from Discover through waitlist/booking, no page talks about a "published storefront", "saved availability", provider setup or internal platform mechanics, and both waitlist and booking confirmations tell the customer what happens next in plain language.
+
+## Test 7 - Storefront theme never resets on public subpages
+Viewport: mobile and desktop
+Covers: Dark & bold service cards, services directory, service detail, portfolio, reviews, about, booking, waitlist, owner live preview placement
+Description: Verifies the selected website design is a persistent storefront identity rather than a homepage-only skin.
+
+Setup:
+1. Publish a business using Dark & bold with at least one service, portfolio work and a future date with no remaining availability
+
+Steps:
+1. Open the Dark & bold storefront and confirm services are presented as deliberate dark cards with a visible service-detail action
+2. Visit Services, one service detail page, Portfolio, Reviews and About
+3. Open booking and then Join the waitlist from a full date
+4. Sign in as the owner and open My Business → Website; switch among all three themes
+
+Expected: Every customer-facing page keeps the selected business theme, Dark & bold never falls back to Clean white, booking/waitlist remain dark, the mobile booking summary and Send booking request action appear after the customer details, and the owner sees the live preview before the theme controls with Open website beside the preview.

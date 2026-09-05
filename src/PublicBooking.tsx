@@ -2,10 +2,12 @@ import { FormEvent,useEffect,useMemo,useState } from 'react';
 import { api } from '@appdeploy/client';
 import { ArrowLeft,ArrowRight,CalendarDays,Check,Clock3,Loader2,MapPin } from 'lucide-react';
 import './public-booking.css';
+import './theme-continuity.css';
 
+type Theme='editorial'|'soft-luxe'|'minimal';
 type Service={id:string;name:string;price:number;duration:number;description:string};
 type BookingPolicy={depositRequired:boolean;depositType:'fixed'|'percentage';depositValue:number;cancellationHours?:number;noShowPolicyText?:string};
-type Storefront={name:string;slug:string;location:string;services:Service[];bookingPolicy?:BookingPolicy};
+type Storefront={name:string;slug:string;location:string;services:Service[];bookingPolicy?:BookingPolicy;brand?:{theme?:Theme;accent?:string}};
 type FormState={customerName:string;customerPhone:string;serviceId:string;date:string;time:string;notes:string;attributionCampaignId:string};
 function money(value:number){return new Intl.NumberFormat('en-ZA',{style:'currency',currency:'ZAR',maximumFractionDigits:0}).format(value||0)}
 function todayIso(){return new Intl.DateTimeFormat('en-CA',{timeZone:'Africa/Johannesburg',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date())}
@@ -24,8 +26,9 @@ export default function PublicBooking({slug}:{slug:string}){
   async function submit(e:FormEvent){e.preventDefault();if(!storefront)return;setBusy(true);setErr('');try{await api.post(`/api/booking/${encodeURIComponent(storefront.slug)}`,form);setSuccess(true);window.scrollTo({top:0,left:0,behavior:'auto'})}catch(error){setErr(messageOf(error))}finally{setBusy(false)}}
   if(loading)return <main className='booking-state'><div className='booking-spinner'/><p>Opening booking…</p></main>;
   if(!storefront||!storefront.services.length)return <main className='booking-state'><h1>Booking isn’t available right now.</h1><p>Return to Discover and choose another business.</p><a href='#/'>Back to Discover</a></main>;
-  if(success)return <main className='booking-page'><div className='booking-success'><div className='booking-success-icon'><Check size={22}/></div><p>Booking request sent</p><h1>We’ve sent your request to {storefront.name}.</h1><span>They’ll confirm the appointment with you.</span><div className='booking-success-actions'><a href={`#/${storefront.slug}`}>Back to {storefront.name}</a><a href='#/'>Back to Discover</a></div></div></main>;
-  return <main className='booking-page'>
+  const themeClass=`theme-${storefront.brand?.theme||'editorial'}`;
+  if(success)return <main className={`booking-page ${themeClass}`}><div className='booking-success'><div className='booking-success-icon'><Check size={22}/></div><p>Booking request sent</p><h1>We’ve sent your request to {storefront.name}.</h1><span>They’ll confirm the appointment with you.</span><div className='booking-success-actions'><a href={`#/${storefront.slug}`}>Back to {storefront.name}</a><a href='#/'>Back to Discover</a></div></div></main>;
+  return <main className={`booking-page ${themeClass}`}>
     <div className='booking-shell'>
       <a href={`#/${storefront.slug}`} className='booking-back'><ArrowLeft size={15}/>Back to {storefront.name}</a>
       <header className='booking-intro'><p>Book with {storefront.name}</p><h1>Choose your appointment.</h1><span><MapPin size={14}/>{storefront.location}</span></header>
