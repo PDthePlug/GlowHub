@@ -7,7 +7,7 @@ Glow Hub now has two connected experiences: **Discover on Glow Hub** for custome
 - Results come only from real published, bookable Glow Hub businesses.
 - Real services, prices, ratings, work and opening hours only; no invented marketplace scale.
 - Date filtering respects saved working days; final slot availability remains enforced by the booking engine.
-- Public profiles keep a familiar customer hierarchy: identity, photos, services/prices, reviews, About/opening hours, WhatsApp and booking.
+- Public profiles keep a clear hierarchy: identity, photos, services/prices, reviews, About/opening hours, WhatsApp and booking.
 
 ## Storefront identity
 Businesses do **not** share one generic website design. Customize My Website selects a full template architecture:
@@ -23,4 +23,4 @@ The private owner product remains Today, Bookings, Clients, Growth and My Busine
 ## Production migration
 The approved production destination is **Vercel with a portable backend/auth/storage layer**. The previous AppDeploy release is only the last verified legacy runtime after that account reached its lifetime deployment limit.
 
-**Merge gate:** provision the portable production backend, run the five acceptance journeys against Vercel, merge this branch into `main`, then make Vercel the actual Glow Hub production deployment.
+**Merge gate:** provision the portable backend, run the five acceptance journeys against Vercel, merge into `main`, then make Vercel the actual Glow Hub production deployment.
