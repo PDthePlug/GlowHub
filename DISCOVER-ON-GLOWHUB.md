@@ -28,4 +28,4 @@ The private owner product remains: Today, Bookings, Clients, Growth and My Busin
 
 The previous AppDeploy deployment remains as the last verified legacy runtime because that account reached its lifetime deployment limit. The approved production destination is **Vercel with a portable backend/auth/storage layer**.
 
-**Merge gate:** provision the portable production backend, run the five acceptance journeys against the Vercel deployment, then merge this branch into `main` and make the Vercel project the actual Glow Hub production deployment.
+**Merge gate:** provision the portable production backend, run the five acceptance journeys against Vercel, then merge this branch into `main` and make Vercel the actual Glow Hub production deployment.
