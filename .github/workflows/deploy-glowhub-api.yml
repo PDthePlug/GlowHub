@@ -1,0 +1,65 @@
+name: Deploy Glow Hub API
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'supabase/functions/glowhub-api/**'
+      - 'backend/**'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check deployment credential
+        id: auth
+        shell: bash
+        env:
+          SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
+          SUPABASE_TOKEN: ${{ secrets.SUPABASE_TOKEN }}
+        run: |
+          if [ -n "${SUPABASE_ACCESS_TOKEN:-}" ]; then
+            echo 'available=true' >> "$GITHUB_OUTPUT"
+            echo 'secret_name=SUPABASE_ACCESS_TOKEN' >> "$GITHUB_OUTPUT"
+          elif [ -n "${SUPABASE_TOKEN:-}" ]; then
+            echo 'available=true' >> "$GITHUB_OUTPUT"
+            echo 'secret_name=SUPABASE_TOKEN' >> "$GITHUB_OUTPUT"
+          else
+            echo 'available=false' >> "$GITHUB_OUTPUT"
+            echo 'No Supabase deployment access token is configured in GitHub Actions.'
+          fi
+
+      - name: Set up Supabase CLI
+        if: steps.auth.outputs.available == 'true'
+        uses: supabase/setup-cli@v1
+        with:
+          version: latest
+
+      - name: Deploy glowhub-api
+        if: steps.auth.outputs.available == 'true'
+        shell: bash
+        env:
+          SUPABASE_ACCESS_TOKEN_PRIMARY: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
+          SUPABASE_ACCESS_TOKEN_FALLBACK: ${{ secrets.SUPABASE_TOKEN }}
+        run: |
+          set -euo pipefail
+          if [ -n "${SUPABASE_ACCESS_TOKEN_PRIMARY:-}" ]; then
+            export SUPABASE_ACCESS_TOKEN="$SUPABASE_ACCESS_TOKEN_PRIMARY"
+          else
+            export SUPABASE_ACCESS_TOKEN="$SUPABASE_ACCESS_TOKEN_FALLBACK"
+          fi
+          supabase functions deploy glowhub-api \
+            --project-ref lnxhtdaocawrqlldhxcz \
+            --no-verify-jwt
+
+      - name: Deployment credential required
+        if: steps.auth.outputs.available != 'true'
+        run: |
+          echo 'Glow Hub API source is ready, but automatic deployment was skipped because no Supabase access token is configured in this repository.'
