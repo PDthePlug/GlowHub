@@ -1,3 +1,4 @@
+// Production entrypoint for the Glow Hub Supabase Edge API.
 import { routeResponseToResponse } from '@appdeploy/sdk';
 import { handler, communicationAutomationHandler } from 'https://raw.githubusercontent.com/PDthePlug/GlowHub/26aa42b12dd93dd1e01bfe5a57862515e7c099e0/backend/index.ts';
 import { discoveryRoutes } from 'https://raw.githubusercontent.com/PDthePlug/GlowHub/26aa42b12dd93dd1e01bfe5a57862515e7c099e0/backend/discovery.ts';
